@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { projects } from '../../data/portfolio'
+import { projects, type Project } from '../../data/portfolio'
 import { ExternalLink, Github } from 'lucide-vue-next'
 
 const props = defineProps<{
   projectIndex: string
 }>()
 
-const project = computed(() => projects[Number(props.projectIndex)] ?? projects[0])
+const project = computed(() => (projects[Number(props.projectIndex)] || projects[0]) as Project)
 </script>
 
 <template>
   <div
+    v-if="project"
     id="projects"
     class="bento-card group p-6 flex flex-col justify-between cursor-pointer"
     v-motion
