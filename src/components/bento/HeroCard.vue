@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import { profile } from '../../data/portfolio'
 
 // Typewriter Logic
-const displayedText = ref('')
+const displayedText = ref('\u200B') // Zero-width space to render cursor immediately
 const fullText = "I'm " + profile.name.split(' ')[0]
 const typingSpeed = 100 // ms per char
 
@@ -11,6 +11,7 @@ const startTyping = () => {
   let i = 0
   const interval = setInterval(() => {
     if (i < fullText.length) {
+      if (i === 0) displayedText.value = '' // Clear zero-width space
       displayedText.value += fullText.charAt(i)
       i++
     } else {
@@ -21,7 +22,7 @@ const startTyping = () => {
 
 onMounted(() => {
   // Delay start slightly to sync with entrance animation
-  setTimeout(startTyping, 800)
+  setTimeout(startTyping, 100)
 })
 </script>
 

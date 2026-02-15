@@ -37,6 +37,8 @@ onMounted(() => {
     v-motion
     :initial="{ opacity: 0, y: 20 }"
     :enter="{ opacity: 1, y: 0, transition: { delay: 500, duration: 600 } }"
+    role="img"
+    aria-label="Bar chart comparing synthetic data quality across frameworks"
   >
     <!-- Title -->
     <div class="mb-4">

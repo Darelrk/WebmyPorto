@@ -33,7 +33,7 @@ export const profile = {
     phone: '087777618696',
     university: 'University of Muhammadiyah North Sumatra',
     degree: 'S1 Data Science',
-    gpa: '3.5/4.0',
+    gpa: '3.6/4.0',
     startYear: 2023,
     links: {
         linkedin: 'https://www.linkedin.com/in/darrell-rafif-kenzie-914037288/',
