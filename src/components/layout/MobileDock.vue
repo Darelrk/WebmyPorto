@@ -29,6 +29,7 @@ function scrollTo(id: string) {
       :key="item.label"
       class="flex flex-col items-center gap-1 transition-colors hover:text-[var(--accent-light)]"
       style="color: var(--text-secondary)"
+      :aria-label="`Navigate to ${item.label}`"
       @click="scrollTo(item.href)"
     >
       <component :is="item.icon" :size="20" />

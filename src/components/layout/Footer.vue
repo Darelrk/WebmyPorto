@@ -83,6 +83,7 @@ const socialLinks = [
         :key="link.label"
         :href="link.href"
         :target="link.external ? '_blank' : undefined"
+        :rel="link.external ? 'noopener noreferrer' : undefined"
         class="glass-btn transition-all duration-500 ease-out"
         :style="{
           opacity: isVisible ? 1 : 0,

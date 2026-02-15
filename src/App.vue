@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useMouse } from '@vueuse/core'
-import { watchEffect, onMounted } from 'vue'
+import { useMouse, useThrottleFn } from '@vueuse/core'
+import { watch, onMounted } from 'vue'
 import { useThemeStore } from './stores/theme'
 import BentoLayout from './components/sections/BentoLayout.vue'
 import Header from './components/layout/Header.vue'
@@ -11,10 +11,10 @@ import MobileDock from './components/layout/MobileDock.vue'
 const themeStore = useThemeStore()
 onMounted(() => themeStore.init())
 
-// Global mouse tracking for spotlight effect
+// Global mouse tracking for spotlight effect with throttling for performance
 const { x, y } = useMouse()
 
-watchEffect(() => {
+const updateSpotlight = useThrottleFn(() => {
   // Update CSS variables for all bento cards
   const cards = document.querySelectorAll('.bento-card') as NodeListOf<HTMLElement>
   cards.forEach((card) => {
@@ -22,11 +22,14 @@ watchEffect(() => {
     // Calculate mouse position relative to the card
     const cardX = x.value - rect.left
     const cardY = y.value - rect.top
-    
+
     card.style.setProperty('--mouse-x', `${cardX}px`)
     card.style.setProperty('--mouse-y', `${cardY}px`)
   })
-})
+}, 16) // ~60fps throttle
+
+// Watch mouse position changes
+watch([x, y], updateSpotlight, { flush: 'sync' })
 </script>
 
 <template>

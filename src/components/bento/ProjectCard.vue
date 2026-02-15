@@ -4,10 +4,10 @@ import { projects, type Project } from '../../data/portfolio'
 import { ExternalLink, Github } from 'lucide-vue-next'
 
 const props = defineProps<{
-  projectIndex: string
+  projectIndex: number
 }>()
 
-const project = computed(() => (projects[Number(props.projectIndex)] || projects[0]) as Project)
+const project = computed(() => (projects[props.projectIndex] || projects[0]) as Project)
 </script>
 
 <template>
@@ -63,6 +63,7 @@ const project = computed(() => (projects[Number(props.projectIndex)] || projects
       <a
         :href="project.github"
         target="_blank"
+        rel="noopener noreferrer"
         class="glass-btn text-sm !py-2 !px-3"
       >
         <Github :size="14" /> Code
@@ -71,6 +72,7 @@ const project = computed(() => (projects[Number(props.projectIndex)] || projects
         v-if="project.demo"
         :href="project.demo"
         target="_blank"
+        rel="noopener noreferrer"
         class="glass-btn text-sm !py-2 !px-3"
       >
         <ExternalLink :size="14" /> Demo

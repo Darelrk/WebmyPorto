@@ -43,6 +43,7 @@ const lpdp = projects.find((p) => p.category === 'visualization')!
     <a
       :href="lpdp.github"
       target="_blank"
+      rel="noopener noreferrer"
       class="flex items-center gap-1 text-xs mt-3 transition-colors hover:text-[var(--accent-light)]"
       style="color: var(--text-secondary)"
     >

@@ -55,9 +55,9 @@ const getMotion = (index: number) => ({
         class="col-span-1" 
         v-motion="getMotion(4)"
       />
-      <ProjectCard 
-        project-index="0" 
-        class="col-span-1 md:col-span-2" 
+      <ProjectCard
+        :project-index="0"
+        class="col-span-1 md:col-span-2"
         v-motion="getMotion(5)"
       />
       <SkillsCard 
@@ -70,9 +70,9 @@ const getMotion = (index: number) => ({
         class="col-span-1 md:col-span-2" 
         v-motion="getMotion(7)"
       />
-      <ProjectCard 
-        project-index="1" 
-        class="col-span-1 md:col-span-2" 
+      <ProjectCard
+        :project-index="1"
+        class="col-span-1 md:col-span-2"
         v-motion="getMotion(8)"
       />
 
