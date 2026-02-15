@@ -31,6 +31,35 @@
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
     --radius-2xl: 2rem;
+
+    /* Theme-specific backgrounds */
+    --header-scroll-bg: rgba(52, 50, 49, 0.4);
+    --dock-bg: rgba(0, 0, 0, 0.85);
+    --scrollbar-thumb: #333;
+    --scrollbar-thumb-hover: #555;
+  }
+
+  /* ===== LIGHT MODE OVERRIDES ===== */
+  :root.light {
+    --bg: #fafafa;
+    --surface: rgba(0, 0, 0, 0.02);
+    --surface-hover: rgba(0, 0, 0, 0.05);
+    --border: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(220, 38, 38, 0.35);
+
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+
+    --accent: #dc2626;
+    --accent-dark: #fecaca;
+    --accent-mid: #ef4444;
+    --accent-light: #991b1b;
+    --accent-glow: rgba(220, 38, 38, 0.12);
+
+    --header-scroll-bg: rgba(255, 255, 255, 0.7);
+    --dock-bg: rgba(255, 255, 255, 0.9);
+    --scrollbar-thumb: #ccc;
+    --scrollbar-thumb-hover: #aaa;
   }
 
   * {
@@ -86,6 +115,15 @@
     radial-gradient(ellipse at 60% 10%, rgba(220, 38, 38, 0.15) 0%, transparent 40%);
   filter: blur(80px);
   animation: bg-breathe 10s ease-in-out infinite alternate;
+}
+
+/* Light mode: softer ambient */
+:root.light .ambient-bg {
+  background:
+    radial-gradient(ellipse at 10% 40%, rgba(220, 38, 38, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 20%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(220, 38, 38, 0.03) 0%, transparent 55%);
+  filter: blur(100px);
 }
 
 @keyframes bg-breathe {
@@ -330,10 +368,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--scrollbar-thumb-hover);
 }

@@ -18,7 +18,7 @@ function scrollTo(id: string) {
     class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-6 px-6 py-3 md:hidden"
     style="
       border: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.85);
+      background: var(--dock-bg);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);

@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { useMouse } from '@vueuse/core'
-import { watchEffect } from 'vue'
+import { watchEffect, onMounted } from 'vue'
+import { useThemeStore } from './stores/theme'
 import BentoLayout from './components/sections/BentoLayout.vue'
 import Header from './components/layout/Header.vue'
 import Footer from './components/layout/Footer.vue'
 import MobileDock from './components/layout/MobileDock.vue'
+
+// Initialize theme on app mount
+const themeStore = useThemeStore()
+onMounted(() => themeStore.init())
 
 // Global mouse tracking for spotlight effect
 const { x, y } = useMouse()
@@ -25,7 +30,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="min-h-screen relative font-sans text-gray-100 bg-black overflow-hidden flex flex-col">
+  <div class="min-h-screen relative font-sans overflow-hidden flex flex-col" style="background-color: var(--bg); color: var(--text-primary);">
     <!-- Ambient Background -->
     <div class="ambient-bg" />
 
@@ -47,6 +52,6 @@ watchEffect(() => {
 /* Global resets if needed */
 body {
   margin: 0;
-  background-color: #000; /* Fallback */
+  background-color: var(--bg);
 }
 </style>
