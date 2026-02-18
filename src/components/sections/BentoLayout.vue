@@ -25,65 +25,33 @@ const getMotion = (index: number) => ({
     } 
   }
 })
+
+// Layout configuration for better maintainability
+const layoutConfig = [
+  { component: HeroCard, class: 'col-span-1 md:col-span-2 lg:row-span-2' },
+  { component: TitleCard, class: 'col-span-1 md:col-span-2' },
+  { component: SocialCard, class: 'col-span-1' },
+  { component: CertCard, class: 'col-span-1' },
+  { component: AboutCard, class: 'col-span-1' },
+  { component: ProjectCard, props: { projectIndex: 0 }, class: 'col-span-1 md:col-span-2' },
+  { component: SkillsCard, class: 'col-span-1' },
+  { component: ComparisonChartCard, class: 'col-span-1 md:col-span-2' },
+  { component: ProjectCard, props: { projectIndex: 1 }, class: 'col-span-1 md:col-span-2' },
+  { component: VisualizationCard, class: 'col-span-1' },
+  { component: ExperienceCard, class: 'col-span-1 md:col-span-2 lg:col-span-3' },
+]
 </script>
 
 <template>
   <section class="max-w-6xl mx-auto px-4 pt-24 pb-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Row 1: Hero (2col, 2row) | Title (2col) -->
-      <HeroCard 
-        class="col-span-1 md:col-span-2 lg:row-span-2" 
-        v-motion="getMotion(0)"
-      />
-      <TitleCard 
-        class="col-span-1 md:col-span-2" 
-        v-motion="getMotion(1)"
-      />
-
-      <!-- Row 2: Social (1col) | Certs (1col) -->
-      <SocialCard 
-        class="col-span-1" 
-        v-motion="getMotion(2)"
-      />
-      <CertCard 
-        class="col-span-1" 
-        v-motion="getMotion(3)"
-      />
-
-      <!-- Row 3: About | Tabular LLM (2col) | Skills -->
-      <AboutCard 
-        class="col-span-1" 
-        v-motion="getMotion(4)"
-      />
-      <ProjectCard
-        :project-index="0"
-        class="col-span-1 md:col-span-2"
-        v-motion="getMotion(5)"
-      />
-      <SkillsCard 
-        class="col-span-1" 
-        v-motion="getMotion(6)"
-      />
-
-      <!-- Row 4: Chart (2col) | MAE (2col) -->
-      <ComparisonChartCard 
-        class="col-span-1 md:col-span-2" 
-        v-motion="getMotion(7)"
-      />
-      <ProjectCard
-        :project-index="1"
-        class="col-span-1 md:col-span-2"
-        v-motion="getMotion(8)"
-      />
-
-      <!-- Row 5: Viz (1col) + Experience (3col) -->
-      <VisualizationCard 
-        class="col-span-1" 
-        v-motion="getMotion(9)"
-      />
-      <ExperienceCard 
-        class="col-span-1 md:col-span-2 lg:col-span-3" 
-        v-motion="getMotion(10)"
+      <component
+        v-for="(item, index) in layoutConfig"
+        :is="item.component"
+        :key="index"
+        v-bind="item.props"
+        :class="item.class"
+        v-motion="getMotion(index)"
       />
     </div>
   </section>

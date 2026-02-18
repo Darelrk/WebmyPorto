@@ -7,7 +7,12 @@ const props = defineProps<{
   projectIndex: number
 }>()
 
-const project = computed(() => (projects[props.projectIndex] || projects[0]) as Project)
+const project = computed(() => {
+  if (props.projectIndex < 0 || props.projectIndex >= projects.length) {
+    return null
+  }
+  return projects[props.projectIndex]
+})
 </script>
 
 <template>
@@ -22,10 +27,10 @@ const project = computed(() => (projects[props.projectIndex] || projects[0]) as 
     <!-- Category Badge -->
     <div class="flex items-center justify-between mb-4">
       <span class="glass-badge" style="border-color: rgba(220, 38, 38, 0.3); color: var(--accent-light)">
-        {{ project.category }}
+        {{ project?.category }}
       </span>
       <span
-        v-if="project.featured"
+        v-if="project?.featured"
         class="text-xs px-3 py-1 font-semibold rounded-full"
         style="background: linear-gradient(135deg, var(--accent-dark), var(--accent-mid)); color: var(--accent-light)"
       >
@@ -36,17 +41,17 @@ const project = computed(() => (projects[props.projectIndex] || projects[0]) as 
     <!-- Title & Desc -->
     <div class="flex-1">
       <h3 class="text-xl font-bold mb-2">
-        {{ project.title }}
+        {{ project?.title }}
       </h3>
       <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
-        {{ project.description }}
+        {{ project?.description }}
       </p>
     </div>
 
     <!-- Tags -->
     <div class="flex flex-wrap gap-2 mt-4 mb-4">
       <span
-        v-for="tag in project.tags"
+        v-for="tag in project?.tags"
         :key="tag"
         class="text-xs px-2 py-1 rounded-md"
         style="
@@ -61,7 +66,7 @@ const project = computed(() => (projects[props.projectIndex] || projects[0]) as 
     <!-- Links -->
     <div class="flex gap-3 pt-4" style="border-top: 1px solid var(--border)">
       <a
-        :href="project.github"
+        :href="project?.github"
         target="_blank"
         rel="noopener noreferrer"
         class="glass-btn text-sm !py-2 !px-3"
@@ -69,8 +74,8 @@ const project = computed(() => (projects[props.projectIndex] || projects[0]) as 
         <Github :size="14" /> Code
       </a>
       <a
-        v-if="project.demo"
-        :href="project.demo"
+        v-if="project?.demo"
+        :href="project?.demo"
         target="_blank"
         rel="noopener noreferrer"
         class="glass-btn text-sm !py-2 !px-3"

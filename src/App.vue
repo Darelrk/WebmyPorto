@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMouse, useThrottleFn } from '@vueuse/core'
-import { watch, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useThemeStore } from './stores/theme'
 import BentoLayout from './components/sections/BentoLayout.vue'
 import Header from './components/layout/Header.vue'
@@ -9,15 +9,22 @@ import MobileDock from './components/layout/MobileDock.vue'
 
 // Initialize theme on app mount
 const themeStore = useThemeStore()
-onMounted(() => themeStore.init())
 
 // Global mouse tracking for spotlight effect with throttling for performance
 const { x, y } = useMouse()
+const cardElements = ref<NodeListOf<HTMLElement> | null>(null)
+
+onMounted(() => {
+  themeStore.init()
+  // Cache the cards once to avoid repeated DOM queries in the mouse watcher
+  cardElements.value = document.querySelectorAll('.bento-card') as NodeListOf<HTMLElement>
+})
 
 const updateSpotlight = useThrottleFn(() => {
-  // Update CSS variables for all bento cards
-  const cards = document.querySelectorAll('.bento-card') as NodeListOf<HTMLElement>
-  cards.forEach((card) => {
+  if (!cardElements.value) return
+  
+  // Update CSS variables for all cached bento cards
+  cardElements.value.forEach((card: HTMLElement) => {
     const rect = card.getBoundingClientRect()
     // Calculate mouse position relative to the card
     const cardX = x.value - rect.left
@@ -29,7 +36,7 @@ const updateSpotlight = useThrottleFn(() => {
 }, 16) // ~60fps throttle
 
 // Watch mouse position changes
-watch([x, y], updateSpotlight, { flush: 'sync' })
+watch([x, y], updateSpotlight, { flush: 'post' }) // Use 'post' to ensure DOM is ready if needed
 </script>
 
 <template>

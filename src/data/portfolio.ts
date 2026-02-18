@@ -29,8 +29,9 @@ export const profile = {
     tagline: 'Transforming complex data into strategic insights.',
     bio: 'A skilled Data Science undergraduate student in end-to-end analysis, transforming complex data into strategic insights. Experienced in designing innovative metrics to answer fundamental questions and enthusiastic about applying these skills to support data-driven policy formulation.',
     location: 'Medan, Sumatera Utara',
-    email: 'darelrafif.kz@gmail.com',
-    phone: '087777618696',
+    // Obfuscated to prevent simple bot scraping
+    email: ['darelrafif.kz', '@', 'gmail.com'].join(''),
+    phone: ['087', '7776', '18696'].join(''),
     university: 'University of Muhammadiyah North Sumatra',
     degree: 'S1 Data Science',
     gpa: '3.6/4.0',
