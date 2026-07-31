@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Darrell Rafif Kenzie | Data Scientist Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#c9cdd4",
+                        "surface-tint": "#1A2B48",
+                        "tertiary": "#E85D4A",
+                        "on-primary-fixed-variant": "#4d5c77",
+                        "surface-container-highest": "#dee4da",
+                        "secondary-container": "#cee5fa",
+                        "on-secondary-fixed-variant": "#485e6f",
+                        "on-background": "#1A2B48",
+                        "tertiary-fixed-dim": "#ed614d",
+                        "tertiary-dim": "#9d271a",
+                        "tertiary-container": "#fe6d59",
+                        "background": "#FDFCFB",
+                        "surface": "#FDFCFB",
+                        "error": "#9e3f4e",
+                        "inverse-surface": "#0d0f0c",
+                        "on-surface": "#1A2B48",
+                        "inverse-on-surface": "#9c9d99",
+                        "on-tertiary-fixed-variant": "#570100",
+                        "surface-bright": "#FDFCFB",
+                        "on-primary-fixed": "#314059",
+                        "outline": "#767c74",
+                        "error-container": "#ff8b9a",
+                        "primary-dim": "#44536d",
+                        "secondary-fixed": "#cee5fa",
+                        "on-secondary": "#f5f9ff",
+                        "primary": "#1A2B48",
+                        "on-tertiary": "#fff7f6",
+                        "inverse-primary": "#ceddfd",
+                        "on-tertiary-fixed": "#000000",
+                        "on-secondary-fixed": "#2c4252",
+                        "secondary-dim": "#405666",
+                        "on-error-container": "#782232",
+                        "on-error": "#fff7f7",
+                        "error-dim": "#4f0116",
+                        "primary-fixed-dim": "#c6d5f4",
+                        "surface-container": "#f5f4f0",
+                        "primary-container": "#d6e3ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#440000",
+                        "secondary": "#4c6273",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary-container": "#44526c",
+                        "on-surface-variant": "#4A5568",
+                        "on-secondary-container": "#3f5465",
+                        "secondary-fixed-dim": "#c0d7eb",
+                        "on-primary": "#f7f7ff",
+                        "surface-container-high": "#e5eae0",
+                        "surface-dim": "#d5dcd0",
+                        "surface-variant": "#dee4da",
+                        "surface-container-low": "#f9f8f5",
+                        "tertiary-fixed": "#fe6d59"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                        "label": ["Public Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .editorial-separator {
+            border-bottom: 1px solid theme('colors.outline-variant');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased overflow-x-hidden selection:bg-tertiary selection:text-white">
+<!-- TopAppBar -->
+<nav class="w-full top-0 sticky z-50 bg-background/90 border-b border-outline-variant/30 flex justify-between items-center px-8 py-6 max-w-screen-2xl mx-auto backdrop-blur-sm">
+<div class="font-headline font-bold text-lg text-primary uppercase tracking-wider">Darrell Rafif Kenzie</div>
+<ul class="hidden md:flex gap-8 items-center">
+<li><a class="text-tertiary font-bold border-b border-tertiary pb-1 font-label text-sm uppercase tracking-wider" href="#home">Home</a></li>
+<li><a class="text-primary hover:text-tertiary transition-all duration-300 font-label text-sm uppercase tracking-wider" href="#about">About</a></li>
+<li><a class="text-primary hover:text-tertiary transition-all duration-300 font-label text-sm uppercase tracking-wider" href="#projects">Projects</a></li>
+<li><a class="text-primary hover:text-tertiary transition-all duration-300 font-label text-sm uppercase tracking-wider" href="#experience">Experience</a></li>
+<li><a class="text-primary hover:text-tertiary transition-all duration-300 font-label text-sm uppercase tracking-wider" href="#research">Research</a></li>
+<li><a class="text-primary hover:text-tertiary transition-all duration-300 font-label text-sm uppercase tracking-wider" href="#contact">Contact</a></li>
+</ul>
+<button class="hidden md:block bg-tertiary text-white px-6 py-2 rounded-none font-label text-sm uppercase tracking-wider hover:bg-primary transition-colors duration-300 cursor-pointer active:opacity-70">Resume</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</nav>
+<main class="max-w-screen-2xl mx-auto px-8 w-full">
+<!-- Hero Section -->
+<section class="min-h-[85vh] grid grid-cols-1 md:grid-cols-12 items-center py-20 gap-16 relative editorial-separator" id="home">
+<div class="w-full md:col-span-5 flex flex-col items-start justify-center z-10">
+<span class="text-tertiary font-label uppercase tracking-widest text-sm mb-6 block">Data Scientist</span>
+<h1 class="font-display font-bold text-5xl md:text-7xl leading-[1.1] text-primary mb-8 tracking-tight">
+                Turning messy data into useful decisions.
+            </h1>
+<p class="text-on-surface-variant font-label text-lg mb-10 max-w-md leading-relaxed">
+                I build predictive models and analyze complex datasets to drive strategic business outcomes, specializing in ML engineering and statistical modeling.
+            </p>
+<div class="flex gap-4 items-center">
+<a class="bg-tertiary text-white px-8 py-4 rounded-none font-label text-sm uppercase tracking-wider hover:bg-primary transition-colors duration-300 flex items-center gap-2" href="#projects">
+                    View Projects <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="text-primary border border-primary px-8 py-4 rounded-none font-label text-sm uppercase tracking-wider hover:bg-surface-container transition-colors duration-300" href="#">
+                    Download CV
+                </a>
+</div>
+</div>
+<div class="w-full md:col-span-7 relative h-[600px] bg-surface-container-low overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGN889q98s1DkJ6XUrlUgWsyV-XP3RyxJvSyhuUuG21zAkw7-ZIpscE7bP54cagpn5_O6sj9vNzP7ZMwso-80dz_iyfv-PqSKdy2zsQAim4mexo2imTcMXSOUSGktXT6qy3WXTBTIMBSspi5GD7Kfah7WIwSsIXmL-guCAOKEfxAQKjheFEIzyLw2nmsfEq2V5JM3V_OYyVHTd3V7sVJ-sod5ofGQAuWUNCZWJy9V96Xr0v7Ls8ZNkEDg7fk_5Xr4hKBl7MQvuf-I');"></div>
+<div class="absolute bottom-12 right-12 bg-white p-6 border border-tertiary shadow-lg max-w-xs">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></div>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Model Metric</span>
+</div>
+<div class="font-display text-4xl text-tertiary mb-1">94.2%</div>
+<div class="font-label text-sm text-on-surface-variant">Prediction Accuracy in Q3 Supply Chain Forecasting Model</div>
+</div>
+<div class="absolute top-16 left-8 -rotate-3 text-tertiary font-label italic text-lg max-w-[200px] leading-tight">
+                Optimizing supply chains with ML
+            </div>
+</div>
+</section>
+<!-- About & Expertise Bento -->
+<section class="py-24 editorial-separator grid grid-cols-1 md:grid-cols-12 gap-16" id="about">
+<div class="md:col-span-4">
+<h2 class="font-display font-bold text-3xl md:text-4xl text-primary mb-6">Analytical Rigor Meets Business Strategy.</h2>
+<p class="text-on-surface-variant font-label leading-relaxed mb-6">
+                With a background in computational statistics and 5+ years of industry experience, I bridge the gap between complex algorithmic research and actionable product features.
+            </p>
+<p class="text-on-surface-variant font-label leading-relaxed">
+                My approach is rooted in clear methodologies, robust data pipelines, and scalable model deployment, ensuring that data science translates directly to ROI.
+            </p>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="border border-outline-variant p-8 hover:border-tertiary transition-colors duration-300">
+<span class="material-symbols-outlined text-tertiary mb-4 text-3xl" data-icon="model_training">model_training</span>
+<h3 class="font-headline font-bold text-xl text-primary mb-3">Machine Learning</h3>
+<p class="text-on-surface-variant font-label text-sm">Developing predictive models, NLP systems, and recommendation engines using PyTorch and Scikit-Learn.</p>
+</div>
+<div class="border border-outline-variant p-8 hover:border-tertiary transition-colors duration-300">
+<span class="material-symbols-outlined text-tertiary mb-4 text-3xl" data-icon="query_stats">query_stats</span>
+<h3 class="font-headline font-bold text-xl text-primary mb-3">Statistical Modeling</h3>
+<p class="text-on-surface-variant font-label text-sm">A/B testing, causal inference, and time-series forecasting to understand user behavior and market trends.</p>
+</div>
+<div class="border border-outline-variant p-8 hover:border-tertiary transition-colors duration-300">
+<span class="material-symbols-outlined text-tertiary mb-4 text-3xl" data-icon="data_object">data_object</span>
+<h3 class="font-headline font-bold text-xl text-primary mb-3">Data Engineering</h3>
+<p class="text-on-surface-variant font-label text-sm">Building resilient ETL pipelines with Apache Spark, Airflow, and dbt to process terabytes of raw telemetry.</p>
+</div>
+<div class="border border-outline-variant p-8 hover:border-tertiary transition-colors duration-300 bg-surface-container-low">
+<h3 class="font-headline font-bold text-xl text-primary mb-6">Tech Stack</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 border border-outline-variant text-xs font-label uppercase">Python</span>
+<span class="px-3 py-1 border border-outline-variant text-xs font-label uppercase">SQL</span>
+<span class="px-3 py-1 border border-outline-variant text-xs font-label uppercase">R</span>
+<span class="px-3 py-1 border border-outline-variant text-xs font-label uppercase">TensorFlow</span>
+<span class="px-3 py-1 border border-outline-variant text-xs font-label uppercase">AWS</span>
+<span class="px-3 py-1 border border-outline-variant text-xs font-label uppercase">Docker</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Timeline -->
+<section class="py-24 editorial-separator" id="experience">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+<div class="md:col-span-4">
+<h2 class="font-display font-bold text-3xl text-primary">Professional Journey</h2>
+</div>
+<div class="md:col-span-8 flex flex-col gap-12">
+<div class="relative pl-8 border-l border-outline-variant">
+<div class="absolute w-3 h-3 bg-tertiary rounded-full -left-[1.5px] top-1.5 -translate-x-1/2"></div>
+<span class="text-sm font-label text-tertiary uppercase tracking-wider mb-2 block">2021 — Present</span>
+<h3 class="font-headline font-bold text-2xl text-primary mb-1">Senior Data Scientist</h3>
+<div class="text-on-surface-variant font-label mb-4">FinTech Solutions Inc.</div>
+<p class="text-on-surface-variant font-label leading-relaxed">
+                        Led the development of a real-time fraud detection engine reducing false positives by 22%. Architected scalable ML pipelines servicing over 5M daily transactions. Mentored a team of 3 junior analysts.
+                    </p>
+</div>
+<div class="relative pl-8 border-l border-outline-variant">
+<div class="absolute w-3 h-3 bg-outline-variant rounded-full -left-[1.5px] top-1.5 -translate-x-1/2"></div>
+<span class="text-sm font-label text-on-surface-variant uppercase tracking-wider mb-2 block">2018 — 2021</span>
+<h3 class="font-headline font-bold text-2xl text-primary mb-1">Machine Learning Engineer</h3>
+<div class="text-on-surface-variant font-label mb-4">RetailAI</div>
+<p class="text-on-surface-variant font-label leading-relaxed">
+                        Implemented collaborative filtering recommendation systems that boosted average order value by 15%. Automated daily reporting dashboards used by executive leadership.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Research Panel -->
+<section class="py-24 editorial-separator bg-surface-container-low -mx-8 px-8" id="research">
+<div class="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+<div class="md:col-span-6 order-2 md:order-1">
+<div class="border border-outline-variant bg-background p-8 relative">
+<div class="absolute top-0 right-0 bg-tertiary text-white text-xs font-label uppercase px-3 py-1">Featured Paper</div>
+<h3 class="font-headline font-bold text-xl text-primary mb-4 pr-16">Gradient Boosting for High-Frequency Trading Arbitrage</h3>
+<p class="text-on-surface-variant font-label text-sm mb-6 leading-relaxed">
+                        Published in the Journal of Financial Data Science. This research explores the application of custom loss functions in LightGBM to minimize latency-sensitive prediction errors.
+                    </p>
+<div class="border-t border-outline-variant pt-6 flex justify-between items-end">
+<div>
+<div class="text-xs font-label text-on-surface-variant uppercase mb-1">Baseline RMSE</div>
+<div class="font-display text-2xl text-primary">0.0421</div>
+</div>
+<div class="text-tertiary mx-4">
+<span class="material-symbols-outlined">arrow_right_alt</span>
+</div>
+<div>
+<div class="text-xs font-label text-tertiary uppercase mb-1">Proposed RMSE</div>
+<div class="font-display text-3xl text-tertiary font-bold">0.0385</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-6 order-1 md:order-2">
+<h2 class="font-display font-bold text-3xl text-primary mb-6">Academic &amp; Industry Research.</h2>
+<p class="text-on-surface-variant font-label leading-relaxed mb-8">
+                    Continuous learning is at the core of my practice. I regularly contribute to open-source methodologies and publish findings on optimization techniques in predictive modeling.
+                </p>
+<a class="text-tertiary font-label text-sm uppercase tracking-wider font-bold border-b border-tertiary pb-1 hover:text-primary hover:border-primary transition-colors" href="#">
+                    View All Publications
+                </a>
+</div>
+</div>
+</section>
+<!-- Projects List -->
+<section class="py-24" id="projects">
+<div class="flex justify-between items-end mb-12 border-b border-outline-variant pb-6">
+<h2 class="font-display font-bold text-3xl text-primary">Selected Projects</h2>
+<a class="text-on-surface-variant font-label text-sm uppercase tracking-wider hover:text-tertiary transition-colors" href="#">View Github</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container border border-outline-variant mb-6 overflow-hidden relative">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500"></div>
+<!-- Placeholder for project viz -->
+<div class="w-full h-full flex items-center justify-center text-outline-variant font-label text-sm uppercase tracking-widest">Data Viz UI</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline font-bold text-2xl text-primary group-hover:text-tertiary transition-colors">Customer Churn Predictor</h3>
+<span class="text-xs font-label text-tertiary border border-tertiary px-2 py-1">2023</span>
+</div>
+<p class="text-on-surface-variant font-label text-sm leading-relaxed">
+                    End-to-end churn prediction pipeline using survival analysis. Includes a Streamlit dashboard for stakeholder exploration.
+                </p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container border border-outline-variant mb-6 overflow-hidden relative">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500"></div>
+<!-- Placeholder for project viz -->
+<div class="w-full h-full flex items-center justify-center text-outline-variant font-label text-sm uppercase tracking-widest">NLP Dashboard</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline font-bold text-2xl text-primary group-hover:text-tertiary transition-colors">Semantic Search Engine</h3>
+<span class="text-xs font-label text-tertiary border border-tertiary px-2 py-1">2022</span>
+</div>
+<p class="text-on-surface-variant font-label text-sm leading-relaxed">
+                    A custom semantic search tool for legal documents utilizing BERT embeddings and FAISS for vector similarity search.
+                </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background w-full py-20 border-t border-outline-variant/30 mt-20" id="contact">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-8 max-w-screen-2xl mx-auto gap-8">
+<div class="font-headline font-bold text-primary">Darrell Rafif Kenzie</div>
+<ul class="flex flex-wrap gap-8">
+<li><a class="text-primary font-body text-label-md hover:text-tertiary underline underline-offset-4 transition-all duration-200" href="#">LinkedIn</a></li>
+<li><a class="text-primary font-body text-label-md hover:text-tertiary underline underline-offset-4 transition-all duration-200" href="#">GitHub</a></li>
+<li><a class="text-primary font-body text-label-md hover:text-tertiary underline underline-offset-4 transition-all duration-200" href="#">ResearchGate</a></li>
+<li><a class="text-primary font-body text-label-md hover:text-tertiary underline underline-offset-4 transition-all duration-200" href="#">Email</a></li>
+</ul>
+<div class="font-body text-label-md text-primary opacity-60">© 2024 Darrell Rafif Kenzie. Built with precision and data.</div>
+</div>
+</footer>
+</body></html>

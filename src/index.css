@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --canvas: 244 244 239;
+  --ink: 20 35 59;
+  --ink-soft: 44 61 86;
+  --muted: 102 114 134;
+  --coral: 232 93 74;
+  --mist: 198 221 241;
+  --line: 216 216 207;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: 20 28 42;
+  --ink: 244 244 239;
+  --ink-soft: 215 221 231;
+  --muted: 177 187 202;
+  --coral: 242 112 92;
+  --mist: 53 79 105;
+  --line: 63 76 96;
+}
+
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: rgb(var(--canvas));
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgb(var(--coral) / 0.24);
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--coral) / 0.78);
+    outline-offset: 4px;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-coral sm:text-[11px];
+  }
+
+  .surface-grid {
+    background-image: linear-gradient(rgb(var(--line) / 0.28) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--line) / 0.28) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+  }
+
+  .paper-noise {
+    background-image: radial-gradient(rgb(var(--ink) / 0.09) 0.6px, transparent 0.6px);
+    background-size: 6px 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

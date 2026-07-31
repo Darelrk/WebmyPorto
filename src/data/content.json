@@ -1,0 +1,196 @@
+{
+  "navbar": {
+    "logo": "darelrk.",
+    "links": [
+      { "name": "About", "href": "#about" },
+      { "name": "Research", "href": "#research" },
+      { "name": "Projects", "href": "#projects" },
+      { "name": "Experience", "href": "#experience" },
+      { "name": "Contact", "href": "#contact" }
+    ],
+    "cta": "Let's work together",
+    "email": "darelrafif.kz@gmail.com"
+  },
+  "hero": {
+    "eyebrow": "Data Science undergraduate",
+    "title": "I turn complex data into decisions people can act on.",
+    "subtitle": "I build analysis, machine learning models, and automated workflows for teams that need clearer answers and more reliable processes.",
+    "cta": "Let's work together",
+    "secondaryCta": "See my work",
+    "secondaryHref": "#projects",
+    "roleLabel": "Current role",
+    "role": "Problem Solver",
+    "caption": "End-to-end analysis, from the first question to a result people can use.",
+    "stats": [
+      { "label": "Study", "value": "S1 Data Science" },
+      { "label": "Focus", "value": "Analysis and machine learning" },
+      { "label": "Workflow", "value": "Automation and data systems" }
+    ],
+    "featuredLabel": "Featured study",
+    "featuredStudy": "Tabular Synthesis LLM",
+    "featuredDescription": "Comparing LLM-based and GAN-based approaches to synthetic tabular data generation."
+  },
+  "about": {
+    "label": "About",
+    "heading": "Clear answers start with better questions.",
+    "text": "I am a Data Science undergraduate student focused on end-to-end analysis. I design practical metrics, build robust models, and turn complex data into strategic insights that can support better decisions and data-driven policy.",
+    "supportLine": "I work across analysis, machine learning, visualization, and workflow automation.",
+    "institution": "University of Muhammadiyah North Sumatra",
+    "degree": "S1 Data Science · GPA 3.6/4.0"
+  },
+  "expertise": [
+    {
+      "id": 1,
+      "icon": "BarChart3",
+      "title": "Data analysis",
+      "description": "Turn raw data into findings teams can understand and use, from exploratory analysis to interactive dashboards.",
+      "tools": ["Python", "Pandas", "NumPy", "SQL", "Looker Studio"]
+    },
+    {
+      "id": 2,
+      "icon": "Brain",
+      "title": "Machine learning and research",
+      "description": "Build and evaluate models for synthetic data, missing-data imputation, forecasting, and other real data problems.",
+      "tools": ["Python", "PyTorch", "XGBoost", "LSTM", "MAE"]
+    },
+    {
+      "id": 3,
+      "icon": "Settings",
+      "title": "Automation and workflows",
+      "description": "Connect validation, reporting, and repeatable processes so teams spend less time on manual data work.",
+      "tools": ["n8n", "Web Scraping", "Microsoft Excel", "SAP Analytics Cloud"]
+    }
+  ],
+  "softSkills": [
+    "Analytical Thinking",
+    "Problem-Solving",
+    "Detail-Oriented",
+    "Data Storytelling",
+    "Initiative & Self-Learning",
+    "Communication"
+  ],
+  "education": [
+    {
+      "id": 1,
+      "school": "University of Muhammadiyah North Sumatra",
+      "period": "2023 - Present (Semester 5)",
+      "degree": "S1 Data Science",
+      "gpa": "3.6/4.0",
+      "description": "Focused on end-to-end analysis, transforming complex data into strategic insights and practical systems."
+    }
+  ],
+  "certifications": [
+    {
+      "id": 1,
+      "name": "ASEAN Data Science Explorers (ADSE) · 2024",
+      "issuer": "ASEAN Foundation & SAP",
+      "description": "Enablement session on SAP Analytics Cloud and SAP Build Apps."
+    },
+    {
+      "id": 2,
+      "name": "Intermediate Data Science · 2025",
+      "issuer": "Digital Talent Scholarship",
+      "description": "20-hour program covering data screening, object analysis, model design, implementation, and evaluation."
+    }
+  ],
+  "research": {
+    "eyebrow": "Research results",
+    "title": "Synthetic data you can evaluate.",
+    "problem": "A benchmark comparing LLM-based and GAN-based approaches to synthetic tabular data generation.",
+    "solution": "GReaT, SDG-3k, and CTGAN-3k were evaluated with an XGBoost classifier using 3,000 synthetic rows.",
+    "results": "GReaT reached 93.53% accuracy, followed by SDG-3k at 87.67%, Original at 87.46%, and CTGAN-3k at 82.83%.",
+    "chartTitle": "Synthetic Data Quality - XGBoost (3K Samples)",
+    "chartData": [
+      { "model": "GReaT", "value": 93.53, "label": "93.53%", "featured": true },
+      { "model": "SDG-3k", "value": 87.67, "label": "87.67%" },
+      { "model": "CTGAN-3k", "value": 82.83, "label": "82.83%" },
+      { "model": "Original", "value": 87.46, "label": "87.46%" }
+    ],
+    "link": "https://github.com/Darelrk/Tabular-Synthesis-LLM"
+  },
+  "experience": [
+    {
+      "id": 1,
+      "role": "Data Management & Automation Intern",
+      "company": "PT PLN (Persero) ULP Medan Baru",
+      "period": "Sep 2025",
+      "highlights": [
+        "Developed automated workflows using n8n to reduce manual entry time.",
+        "Validated customer records from the AP2T system.",
+        "Collaborated with the technical team to verify and reconcile data."
+      ],
+      "tech": ["n8n", "Data validation", "Automation"]
+    },
+    {
+      "id": 2,
+      "role": "Blockchain QA & Data Tester",
+      "company": "Remote (Freelance)",
+      "period": "Jan 2024 - Present",
+      "highlights": [
+        "Tested 10+ early-stage blockchain protocols across testnet and mainnet.",
+        "Analyzed technical documentation for dApps and smart contracts.",
+        "Tracked on-chain transactions through block explorers."
+      ],
+      "tech": ["QA testing", "Technical analysis", "Data tracking"]
+    },
+    {
+      "id": 3,
+      "role": "Member, R&D Division",
+      "company": "HIMASDA (Data Science Student Association)",
+      "period": "2024 - Present",
+      "highlights": [
+        "Collaborate with peers to explore emerging data-science technologies and methodologies."
+      ],
+      "tech": ["Research", "Data Science", "Collaboration"]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Global University Opportunity Analysis Dashboard (LPDP List)",
+      "description": "An interactive dashboard for prospective students, combining a custom Hidden Gem Score with geographic and university-ranking views in Looker Studio.",
+      "tags": ["Analytics", "SQL", "Looker Studio"],
+      "link": "https://github.com/Darelrk/Dashboard-Analisis-Universitas-LPDP"
+    },
+    {
+      "id": 2,
+      "title": "Sleep Health Analysis",
+      "description": "Analyzes how lifestyle factors, health conditions, and stress relate to sleep quality, with data cleaning, exploration, and an interactive Google Looker Studio dashboard.",
+      "tags": ["Python", "Pandas", "NumPy", "Looker Studio"],
+      "link": "https://github.com/Darelrk/Sleep-Health-and-Lifestyle-Dataset"
+    },
+    {
+      "id": 3,
+      "title": "Tabular Synthesis LLM",
+      "description": "Benchmarks LLM-based GReaT against GAN-based CTGAN and SDG for synthetic tabular data. GReaT reached 93.53% accuracy on the 3,000-row configuration tested.",
+      "tags": ["Python", "LLM", "Data Synthesis", "Machine Learning"],
+      "link": "https://github.com/Darelrk/Tabular-Synthesis-LLM"
+    },
+    {
+      "id": 4,
+      "title": "MAE Hybrid Imputation Study",
+      "description": "A study on hybrid imputation methods using Masked Autoencoders to handle missing data in complex datasets.",
+      "tags": ["Python", "Deep Learning", "MAE", "Data Imputation"],
+      "link": "https://github.com/Darelrk/mae-hybrid-imputation-study"
+    },
+    {
+      "id": 5,
+      "title": "Credit-to-GDP Gap Forecasting",
+      "description": "Forecasts Indonesia's Credit-to-GDP Gap with the HP Filter, Attention-based LSTM, XGBoost, ARIMA, and an ensemble model to support financial-stability monitoring.",
+      "tags": ["Python", "PyTorch", "LSTM", "XGBoost", "ARIMA"],
+      "link": "https://github.com/Darelrk/credit-gap-forecaster"
+    }
+  ],
+  "footer": {
+    "eyebrow": "Open for collaboration",
+    "title": "Let's work together.",
+    "description": "Open for collaboration in data science, analysis, and machine learning projects.",
+    "email": "darelrafif.kz@gmail.com",
+    "copyright": "© 2026 Darrell Rafif Kenzie",
+    "socialLinks": [
+      { "name": "GitHub", "url": "https://github.com/Darelrk" },
+      { "name": "LinkedIn", "url": "https://www.linkedin.com/in/darrell-rafif-kenzie-914037288/" },
+      { "name": "Medium", "url": "https://medium.com/@darelrafif.kz/about" }
+    ]
+  }
+}
