@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { MotionConfig, motion, useReducedMotion } from 'framer-motion'
 import content from './data/content.json'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -27,6 +27,7 @@ export default function App() {
   const reduceMotion = useReducedMotion()
 
   return (
+    <MotionConfig reducedMotion="user">
     <motion.div
       className="relative min-h-[100dvh] overflow-x-clip bg-canvas text-ink"
       initial={reduceMotion ? false : { opacity: 0 }}
@@ -60,5 +61,6 @@ export default function App() {
         <ScrollToTop />
       </div>
     </motion.div>
+    </MotionConfig>
   )
 }
