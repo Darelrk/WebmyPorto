@@ -54,16 +54,27 @@ export default function Education({ educationData = [], certificationData = [] }
               <h3 className="text-xl font-bold tracking-[-0.04em]">Certifications</h3>
               <Award size={20} className="text-coral" strokeWidth={1.5} />
             </div>
-            <div className="divide-y divide-line/80">
+            <div className="edu-cert-list">
               {certificationData.map((item, index) => (
-                <article key={item.id} className="edu-cert group grid gap-3 py-7 sm:grid-cols-[0.25fr_1fr_auto] sm:gap-6">
-                  <span className="font-mono text-xs text-muted">0{index + 1}</span>
-                  <div>
-                    <h4 className="text-lg font-bold tracking-[-0.04em]">{item.name}</h4>
-                    <p className="mt-1 text-sm text-coral">{item.issuer}</p>
-                    <p className="mt-3 max-w-lg text-sm leading-6 text-muted">{item.description}</p>
+                <article key={item.id}
+                  className="edu-cert group relative mb-4 overflow-hidden rounded-2xl border border-line bg-canvas p-5 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-float sm:p-6"
+                  style={{ zIndex: certificationData.length - index }}
+                >
+                  {/* hover reveal top bar */}
+                  <div className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-coral transition-transform duration-400 ease-out group-hover:scale-x-100" />
+                  <div className="grid gap-3 sm:grid-cols-[auto_1fr_auto] sm:items-start sm:gap-6">
+                    <span className="font-mono text-xs text-muted">0{index + 1}</span>
+                    <div>
+                      <h4 className="text-lg font-bold tracking-[-0.04em]">{item.name}</h4>
+                      <p className="mt-1 text-sm text-coral">{item.issuer}</p>
+                      <p className="mt-3 max-w-lg text-sm leading-6 text-muted">{item.description}</p>
+                      {/* verify pill reveal on hover */}
+                      <span className="mt-3 inline-flex max-h-0 overflow-hidden rounded-full border border-coral/40 px-3 py-1 text-[10px] font-semibold text-coral opacity-0 transition-all duration-300 group-hover:max-h-8 group-hover:opacity-100">
+                        Verified · {item.issuer?.split(' ')[0]}
+                      </span>
+                    </div>
+                    <ArrowUpRight className="mt-1 text-muted transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-coral" size={19} strokeWidth={1.5} />
                   </div>
-                  <ArrowUpRight className="mt-1 text-muted transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-coral" size={19} strokeWidth={1.5} />
                 </article>
               ))}
             </div>

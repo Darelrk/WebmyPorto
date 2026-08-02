@@ -1,6 +1,6 @@
-import { BarChart3, Brain, Code2, Database, Settings2 } from 'lucide-react'
-import { useRef } from 'react'
-import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { BarChart3, Brain, ChevronDown, Code2, Database, Settings2 } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { useGSAP, EASE_OUT, gsap } from '../lib/gsap'
 
 const iconMap = {
   Brain: Brain,
@@ -10,12 +10,82 @@ const iconMap = {
   Database,
 }
 
+// Proficiency map — values 0-100
+const PROFICIENCY = {
+  Python: 93, Pandas: 88, NumPy: 87, SQL: 90, 'Looker Studio': 82,
+  PyTorch: 85, XGBoost: 88, LSTM: 80, MAE: 78,
+  'n8n': 85, 'Web Scraping': 82, 'Microsoft Excel': 90, 'SAP Analytics Cloud': 75,
+  'Data validation': 92, Automation: 88,
+}
+
+// Associate tools with projects based on tech used
+const USED_IN = {
+  Python: ['Tabular Synthesis LLM', 'Missing Data Imputation', 'AFCEA Forecasting'],
+  Pandas: ['Tabular Synthesis LLM', 'Missing Data Imputation'],
+  NumPy: ['Missing Data Imputation'],
+  SQL: ['Tabular Synthesis LLM', 'AFCEA Forecasting'],
+  'Looker Studio': ['AFCEA Forecasting'],
+  PyTorch: ['Tabular Synthesis LLM'],
+  XGBoost: ['Tabular Synthesis LLM'],
+  LSTM: ['AFCEA Forecasting'],
+  MAE: ['AFCEA Forecasting'],
+  'n8n': ['PLN Data Automation'],
+  'Web Scraping': ['Blockchain QA'],
+  'Microsoft Excel': ['AFCEA Forecasting', 'PLN Data Automation'],
+  'SAP Analytics Cloud': ['ADSE Certification'],
+  'Data validation': ['PLN Data Automation', 'Blockchain QA'],
+  Automation: ['PLN Data Automation'],
+}
+
+function SkillTag({ tool }) {
+  const [open, setOpen] = useState(false)
+  const tagRef = useRef(null)
+  const prof = PROFICIENCY[tool]
+  const usedIn = USED_IN[tool] || []
+
+  return (
+    <div className="relative">
+      <button
+        ref={tagRef}
+        type="button"
+        onClick={() => setOpen(!open)}
+        className={`cursor-pointer rounded-full border transition-all hover:scale-[1.03] hover:shadow-sm ${open ? 'border-coral bg-coral/10' : 'border-ink/10'}`}
+      >
+        <span className={`px-2.5 py-1 text-xs font-medium ${open ? 'text-coral' : ''}`}>{tool}</span>
+        <ChevronDown size={10} className={`inline ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+      {open && (
+        <div className="absolute left-0 top-full z-20 mt-2 w-48 rounded-xl border border-line bg-canvas p-3 shadow-soft">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-semibold text-ink">Proficiency</span>
+            <span className="text-coral">{prof ?? 70}%</span>
+          </div>
+          <div className="mt-1.5 h-1.5 w-full rounded-full bg-line">
+            <div
+              className="h-full rounded-full bg-coral"
+              style={{ width: `${prof ?? 70}%` }}
+            />
+          </div>
+          {usedIn.length > 0 && (
+            <div className="mt-2 border-t border-line pt-2">
+              <p className="text-[10px] font-medium text-muted">Used in:</p>
+              <ul className="mt-1 space-y-0.5">
+                {usedIn.slice(0, 3).map((p) => (
+                  <li key={p} className="text-[11px] text-ink">{p}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function Expertise({ data = [], softSkills = [] }) {
-  const reduceMotion = useReducedMotionSafe()
   const ref = useRef(null)
 
   useGSAP(() => {
-    if (reduceMotion) return
     gsap.fromTo('.exp-label', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT,
       scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } })
     gsap.fromTo('.exp-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
@@ -55,7 +125,7 @@ export default function Expertise({ data = [], softSkills = [] }) {
                   {item.tools?.length > 0 && (
                     <div className={`mt-5 flex flex-wrap gap-2 ${featured ? 'text-canvas/80' : 'text-ink/70'}`}>
                       {item.tools.map((tool) => (
-                        <span key={tool} className={`rounded-full border px-2.5 py-1 text-xs ${featured ? 'border-canvas/25' : 'border-ink/10'}`}>{tool}</span>
+                        <SkillTag key={`${item.id}-${tool}`} tool={tool} />
                       ))}
                     </div>
                   )}
