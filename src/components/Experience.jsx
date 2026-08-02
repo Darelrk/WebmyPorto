@@ -1,29 +1,33 @@
 import { ArrowUpRight, Briefcase } from 'lucide-react'
-import { motion, useReducedMotion } from 'framer-motion'
-
-const cleanText = (value = '') => value.replace(/\*\*/g, '')
+import { useRef } from 'react'
+import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
 
 export default function Experience({ data = [] }) {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useReducedMotionSafe()
+  const ref = useRef(null)
+
+  useGSAP(() => {
+    if (reduceMotion) return
+    gsap.fromTo('.exp-label', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT,
+      scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } })
+    gsap.fromTo('.exp-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+      scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true } })
+    gsap.fromTo('.exp-item', { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT, stagger: 0.1,
+        scrollTrigger: { trigger: '.exp-list', start: 'top 85%', once: true } })
+  }, { scope: ref, revertOnUpdate: true })
 
   return (
-    <section id="experience" className="border-b border-line/80">
+    <section id="experience" ref={ref} className="border-b border-line/80">
       <div className="container-shell py-24 sm:py-32">
         <div className="grid gap-8 lg:grid-cols-[0.6fr_1.4fr] lg:gap-24">
           <div>
-            <p className="text-xs font-bold text-coral">Experience</p>
-            <h2 className="mt-4 max-w-sm text-[clamp(2.7rem,5vw,4.4rem)] font-bold leading-[0.96] tracking-[-0.075em]">Experience applying data to real work.</h2>
+            <p className="exp-label text-xs font-bold text-coral">Experience</p>
+            <h2 className="exp-heading mt-4 max-w-sm text-[clamp(2.7rem,5vw,4.4rem)] font-bold leading-[0.96] tracking-[-0.075em]">Experience applying data to real work.</h2>
           </div>
-          <div className="divide-y divide-line/80 border-y border-line/80">
+          <div className="exp-list divide-y divide-line/80 border-y border-line/80">
             {data.map((item, index) => (
-              <motion.article
-                key={item.id}
-                className="grid gap-6 py-9 sm:grid-cols-[0.2fr_1fr] sm:gap-8"
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: reduceMotion ? 0 : index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              >
+              <article key={item.id} className="exp-item grid gap-6 py-9 sm:grid-cols-[0.2fr_1fr] sm:gap-8">
                 <div className="flex items-start justify-between gap-4 sm:block">
                   <span className="font-mono text-xs text-muted">0{index + 1}</span>
                   <span className="rounded-full border border-line px-3 py-1.5 text-xs text-muted sm:mt-4 sm:inline-block">{item.period}</span>
@@ -41,7 +45,7 @@ export default function Experience({ data = [] }) {
                       {item.highlights.map((highlight) => (
                         <li key={highlight} className="flex gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" aria-hidden="true" />
-                          <span>{cleanText(highlight)}</span>
+                          <span>{highlight.replace(/\*\*/g, '')}</span>
                         </li>
                       ))}
                     </ul>
@@ -55,7 +59,7 @@ export default function Experience({ data = [] }) {
                     Let&apos;s work together <ArrowUpRight size={16} strokeWidth={1.8} />
                   </a>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
         </div>

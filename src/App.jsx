@@ -1,5 +1,5 @@
-import React, { Suspense, lazy } from 'react'
-import { MotionConfig, motion, useReducedMotion } from 'framer-motion'
+import React, { Suspense, lazy, useRef, useLayoutEffect } from 'react'
+import { useGSAP, gsap, useReducedMotionSafe } from './lib/gsap'
 import content from './data/content.json'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -24,16 +24,20 @@ function SectionSkeleton() {
 }
 
 export default function App() {
-  const reduceMotion = useReducedMotion()
+  const rootRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(rootRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.45, ease: 'expo.out' }
+      )
+    })
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <MotionConfig reducedMotion="user">
-    <motion.div
-      className="relative min-h-[100dvh] overflow-x-clip bg-canvas text-ink"
-      initial={reduceMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <div ref={rootRef} className="relative min-h-[100dvh] overflow-x-clip bg-canvas text-ink">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
         <div className="surface-grid absolute inset-x-0 top-0 h-[52rem] opacity-60" />
         <div className="paper-noise absolute inset-0 opacity-[0.035]" />
@@ -45,12 +49,8 @@ export default function App() {
         <main>
           <Hero data={content.hero} />
           <About data={content.about} expertise={content.expertise} />
-
           <Suspense fallback={<SectionSkeleton />}>
-            <Education
-              educationData={content.education}
-              certificationData={content.certifications}
-            />
+            <Education educationData={content.education} certificationData={content.certifications} />
             <Expertise data={content.expertise} softSkills={content.softSkills} />
             <Experience data={content.experience} />
             <FeaturedResearch data={content.research} />
@@ -60,7 +60,6 @@ export default function App() {
         </main>
         <ScrollToTop />
       </div>
-    </motion.div>
-    </MotionConfig>
+    </div>
   )
 }

@@ -1,20 +1,30 @@
-import React from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { useRef } from 'react'
+import { useGSAP, useReducedMotionSafe, gsap, ScrollTrigger } from '../lib/gsap'
 
-const ScrollProgress = () => {
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+export default function ScrollProgress() {
+  const barRef = useRef(null)
+  const reduceMotion = useReducedMotionSafe()
 
-    return (
-        <motion.div
-            className="fixed top-0 left-0 right-0 h-1 bg-blue-600 origin-left z-50"
-            style={{ scaleX }}
-        />
-    );
-};
+  useGSAP(() => {
+    if (reduceMotion || !barRef.current) return
+    gsap.to(barRef.current, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.3,
+      },
+    })
+  }, { scope: barRef })
 
-export default ScrollProgress;
+  return (
+    <div
+      ref={barRef}
+      className="fixed top-0 left-0 right-0 h-1 bg-blue-600 origin-left z-50"
+      style={{ transform: 'scaleX(0)', transformOrigin: 'left' }}
+      aria-hidden="true"
+    />
+  )
+}

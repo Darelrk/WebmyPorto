@@ -1,5 +1,6 @@
 import { BarChart3, Brain, Code2, Database, Settings2 } from 'lucide-react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useRef } from 'react'
+import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
 
 const iconMap = {
   Brain: Brain,
@@ -10,29 +11,38 @@ const iconMap = {
 }
 
 export default function Expertise({ data = [], softSkills = [] }) {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useReducedMotionSafe()
+  const ref = useRef(null)
+
+  useGSAP(() => {
+    if (reduceMotion) return
+    gsap.fromTo('.exp-label', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT,
+      scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } })
+    gsap.fromTo('.exp-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+      scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true } })
+    gsap.fromTo('.exp-card', { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT, stagger: 0.09,
+        scrollTrigger: { trigger: '.exp-grid', start: 'top 82%', once: true } })
+    gsap.fromTo('.skill-chip', { opacity: 0, scale: 0.88 },
+      { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.05,
+        scrollTrigger: { trigger: '.skill-list', start: 'top 88%', once: true } })
+  }, { scope: ref, revertOnUpdate: true })
 
   return (
-    <section id="expertise" className="border-b border-line/80">
+    <section id="expertise" ref={ref} className="border-b border-line/80">
       <div className="container-shell py-24 sm:py-32">
         <div className="max-w-3xl">
           <h2 className="text-[clamp(2.7rem,5vw,4.7rem)] font-bold leading-[0.96] tracking-[-0.075em]">Tools that turn questions into useful systems.</h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">A practical toolkit for finding signal, testing ideas, and making the result useful to the people who need it.</p>
         </div>
 
-        <div className="mt-14 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="exp-grid mt-14 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
           {data.map((item, index) => {
             const Icon = iconMap[item.icon] ?? Code2
             const featured = index === 0
             return (
-              <motion.article
-                key={item.id}
-                className={`group relative overflow-hidden rounded-[22px] p-7 sm:p-9 ${featured ? 'min-h-[300px] bg-coral text-canvas lg:row-span-2' : 'min-h-[230px] bg-mist text-ink'}`}
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: reduceMotion ? 0 : index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              >
+              <article key={item.id}
+                className={`exp-card group relative overflow-hidden rounded-[22px] p-7 sm:p-9 ${featured ? 'min-h-[300px] bg-coral text-canvas lg:row-span-2' : 'min-h-[230px] bg-mist text-ink'}`}>
                 <div className="flex items-start justify-between gap-4">
                   <div className={`flex h-11 w-11 items-center justify-center rounded-full border ${featured ? 'border-canvas/30' : 'border-ink/15'}`}>
                     <Icon size={21} strokeWidth={1.5} />
@@ -53,16 +63,16 @@ export default function Expertise({ data = [], softSkills = [] }) {
                 {featured && (
                   <div className="absolute -bottom-10 -right-7 h-44 w-44 rounded-full border border-canvas/25 transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
                 )}
-              </motion.article>
+              </article>
             )
           })}
         </div>
         {softSkills.length > 0 && (
           <div className="mt-10 border-t border-line pt-6">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral">How I work</p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="skill-list mt-4 flex flex-wrap gap-2">
               {softSkills.map((skill) => (
-                <span key={skill} className="rounded-full border border-line px-3 py-1.5 text-sm text-muted">{skill}</span>
+                <span key={skill} className="skill-chip rounded-full border border-line px-3 py-1.5 text-sm text-muted">{skill}</span>
               ))}
             </div>
           </div>
