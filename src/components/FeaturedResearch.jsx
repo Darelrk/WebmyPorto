@@ -2,7 +2,7 @@ import { ArrowUpRight, FlaskConical, Search, Database, Cpu, CheckCircle2 } from 
 import { useRef } from 'react'
 import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
 import GlowButton from './ui/GlowButton'
-import ResearchChart from './ResearchChart'
+import RevenueLineChart from './ui/RevenueLineChart'
 
 const PIPELINE_STEPS = [
   { icon: Search, label: 'Problem', desc: 'Gaps in synthetic tabular data: fidelity vs. privacy trade-off' },
@@ -177,13 +177,13 @@ export default function FeaturedResearch({ data }) {
             <div className="self-end rounded-[20px] border border-canvas/15 bg-canvas/[0.04] p-5 sm:p-7">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] text-canvas/50">{data.chartTitle}</p>
-                  <p className="mt-2 text-2xl font-bold tracking-[-0.05em]">Accuracy</p>
+                  <p className="font-mono text-[10px] text-canvas/50">Accuracy trend (XGBoost)</p>
+                  <p className="mt-2 text-2xl font-bold tracking-[-0.05em]">Weekly</p>
                 </div>
-                <p className="font-mono text-xs text-coral">{data.chartData?.length ?? 0} benchmarks</p>
+                <p className="font-mono text-xs text-coral">{data.accuracyTrend?.length ?? 0} checkpoints</p>
               </div>
               <div ref={chartRef} className="mt-8">
-                <ResearchChart data={data.chartData} title={data.chartTitle} />
+                <RevenueLineChart data={data.accuracyTrend} theme="dark" />
               </div>
               {/* Before/after compare slider */}
               <CompareSlider data={data} />
