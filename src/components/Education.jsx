@@ -35,7 +35,7 @@ export default function Education({ educationData = [], certificationData = [] }
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
           <article className="edu-current relative overflow-hidden rounded-[24px] bg-ink p-7 text-canvas sm:p-9">
-            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full border border-canvas/10" aria-hidden="true" />
+            <div className="absolute -right-16 -top-16 hidden h-48 w-48 rounded-full border border-canvas/10 md:block" aria-hidden="true" />
             <div className="relative flex items-start justify-between gap-4">
               <p className="font-mono text-[10px] font-bold text-canvas/60">Current study</p>
               <CalendarDays size={20} strokeWidth={1.5} className="text-coral" />

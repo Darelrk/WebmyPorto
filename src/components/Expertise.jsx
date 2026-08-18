@@ -131,7 +131,7 @@ export default function Expertise({ data = [], softSkills = [] }) {
                   )}
                 </div>
                 {featured && (
-                  <div className="absolute -bottom-10 -right-7 h-44 w-44 rounded-full border border-canvas/25 transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
+                  <div className="absolute -bottom-10 -right-7 hidden h-44 w-44 rounded-full border border-canvas/25 transition-transform duration-500 group-hover:scale-110 md:block" aria-hidden="true" />
                 )}
               </article>
             )

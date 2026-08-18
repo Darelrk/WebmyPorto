@@ -41,7 +41,7 @@ export default function App() {
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
         <div className="surface-grid absolute inset-x-0 top-0 h-[52rem] opacity-60" />
         <div className="paper-noise absolute inset-0 opacity-[0.035]" />
-        <div className="absolute -right-48 top-24 h-96 w-96 rounded-full bg-mist/30 blur-3xl" />
+        <div className="absolute -right-48 top-24 hidden h-96 w-96 rounded-full bg-mist/30 blur-3xl md:block" aria-hidden="true" />
       </div>
 
       <div className="relative z-10">
@@ -50,7 +50,10 @@ export default function App() {
           <Hero data={content.hero} />
           <About data={content.about} expertise={content.expertise} />
           <Suspense fallback={<SectionSkeleton />}>
-            <Education educationData={content.education} certificationData={content.certifications} />
+            <Education
+              educationData={content.education}
+              certificationData={content.certifications}
+            />
             <Expertise data={content.expertise} softSkills={content.softSkills} />
             <Experience data={content.experience} />
             <FeaturedResearch data={content.research} />
