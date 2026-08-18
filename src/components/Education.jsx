@@ -10,10 +10,10 @@ export default function Education({ educationData = [], certificationData = [] }
     if (reduceMotion) return
     gsap.fromTo('.edu-label', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT,
       scrollTrigger: { trigger: '.edu-label', start: 'top 85%', once: true } })
-    gsap.fromTo('.edu-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+    gsap.fromTo('.edu-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE_OUT,
       scrollTrigger: { trigger: '.edu-heading', start: 'top 82%', once: true } })
     gsap.fromTo('.edu-current', { opacity: 0, y: 32 },
-      { opacity: 0.94, y: 0, duration: 0.7, ease: 'expo.out',
+      { opacity: 0.94, y: 0, duration: 0.7, ease: EASE_OUT,
         scrollTrigger: { trigger: '.edu-current', start: 'top 80%', once: true } })
     gsap.fromTo('.edu-cert', { opacity: 0, y: 18 },
       { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT, stagger: 0.08,

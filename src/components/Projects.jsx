@@ -11,10 +11,10 @@ export default function Projects({ data = [] }) {
 
   useGSAP(() => {
     if (reduceMotion) return
-    gsap.fromTo('.proj-header', { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'expo.out',
+    gsap.fromTo('.proj-header', { opacity: 0 }, { opacity: 1, duration: 0.7, ease: EASE_OUT,
       scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true } })
     gsap.fromTo('.proj-featured', { opacity: 0 },
-      { opacity: 1, duration: 0.7, ease: 'expo.out', delay: 0.1,
+      { opacity: 1, duration: 0.7, ease: EASE_OUT, delay: 0.1,
         scrollTrigger: { trigger: '.proj-featured', start: 'top 82%', once: true } })
     gsap.fromTo('.proj-item', { opacity: 0, x: -16 },
       { opacity: 1, x: 0, duration: 0.55, ease: EASE_OUT, stagger: 0.08,

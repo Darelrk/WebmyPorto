@@ -5,6 +5,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import App from './App.jsx'
 import './index.css'
+import { prefersReducedMotion } from './lib/motion'
 
 // Lenis smooth scroll → GSAP ScrollTrigger sync
 const lenis = new Lenis({
@@ -28,7 +29,7 @@ gsap.ticker.add((time) => { lenis.raf(time * 1000) })
 gsap.ticker.lagSmoothing(0)
 
 // Honor reduced-motion: disable Lenis smoothing if user prefers reduced motion
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+if (prefersReducedMotion()) {
   lenis.destroy()
 } else if (window.innerWidth < 768) {
   // Disable smooth scroll on mobile (touch devices jank with custom scroll)

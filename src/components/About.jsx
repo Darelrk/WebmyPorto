@@ -1,6 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { useRef } from 'react'
-import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { useGSAP, EASE_OUT, EASE_BOUNCE, useReducedMotionSafe, gsap } from '../lib/gsap'
 
 export default function About({ data, expertise = [] }) {
   const reduceMotion = useReducedMotionSafe()
@@ -14,7 +14,7 @@ export default function About({ data, expertise = [] }) {
       scrollTrigger: { trigger: '.about-h2', start: 'top 80%', once: true } })
     gsap.fromTo('.about-body', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT,
       scrollTrigger: { trigger: '.about-body', start: 'top 85%', once: true } })
-    gsap.fromTo('.about-pills span', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.07,
+    gsap.fromTo('.about-pills span', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4, ease: EASE_BOUNCE, stagger: 0.07,
       scrollTrigger: { trigger: '.about-pills', start: 'top 88%', once: true } })
     gsap.fromTo('.hl-card', { opacity: 0, y: 20, scale: 0.97 },
       { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: EASE_OUT, stagger: 0.12,

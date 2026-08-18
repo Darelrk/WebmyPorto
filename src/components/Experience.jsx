@@ -10,7 +10,7 @@ export default function Experience({ data = [] }) {
     if (reduceMotion) return
     gsap.fromTo('.exp-label', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT,
       scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } })
-    gsap.fromTo('.exp-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+    gsap.fromTo('.exp-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE_OUT,
       scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true } })
     gsap.fromTo('.exp-item', { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT, stagger: 0.1,

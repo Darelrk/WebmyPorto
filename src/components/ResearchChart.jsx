@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useGSAP, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { useGSAP, EASE_BOUNCE, useReducedMotionSafe, gsap } from '../lib/gsap'
 
 export default function ResearchChart({ data = [], title = 'Research results' }) {
   const chartData = Array.isArray(data) ? data : []
@@ -18,7 +18,7 @@ export default function ResearchChart({ data = [], title = 'Research results' })
         scaleY: 1,
         opacity: 1,
         duration: 0.9,
-        ease: 'back.out(1.2)',
+        ease: EASE_BOUNCE,
         stagger: 0.09,
         scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true },
         transformOrigin: 'bottom',

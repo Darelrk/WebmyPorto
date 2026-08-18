@@ -1,6 +1,6 @@
 import { BarChart3, Brain, ChevronDown, Code2, Database, Settings2 } from 'lucide-react'
 import { useRef, useState } from 'react'
-import { useGSAP, EASE_OUT, gsap } from '../lib/gsap'
+import { useGSAP, EASE_OUT, EASE_BOUNCE, gsap } from '../lib/gsap'
 import TextReveal from './ui/TextReveal'
 
 const iconMap = {
@@ -38,48 +38,148 @@ const USED_IN = {
   Automation: ['PLN Data Automation'],
 }
 
-function SkillTag({ tool }) {
-  const [open, setOpen] = useState(false)
-  const tagRef = useRef(null)
-  const prof = PROFICIENCY[tool]
-  const usedIn = USED_IN[tool] || []
+function CategoryCard({ item, index }) {
+  const [activeTool, setActiveTool] = useState(null)
+  const Icon = iconMap[item.icon] ?? Code2
+  const featured = index === 0
+
+  const activeProf = activeTool ? (PROFICIENCY[activeTool] ?? 70) : null
+  const activeUsedIn = activeTool ? (USED_IN[activeTool] || []) : []
 
   return (
-    <div className="relative">
-      <button
-        ref={tagRef}
-        type="button"
-        onClick={() => setOpen(!open)}
-        className={`cursor-pointer rounded-full border transition-all hover:scale-[1.03] hover:shadow-sm ${open ? 'border-coral bg-coral/10' : 'border-ink/10'}`}
-      >
-        <span className={`px-2.5 py-1 text-xs font-medium ${open ? 'text-coral' : ''}`}>{tool}</span>
-        <ChevronDown size={10} className={`inline ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
-      </button>
-      {open && (
-        <div className="absolute left-0 top-full z-20 mt-2 w-[min(12rem,calc(100vw-2rem))] rounded-xl border border-line bg-canvas p-3 shadow-soft">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-semibold text-ink">Proficiency</span>
-            <span className="text-coral">{prof ?? 70}%</span>
-          </div>
-          <div className="mt-1.5 h-1.5 w-full rounded-full bg-line">
-            <div
-              className="h-full rounded-full bg-coral"
-              style={{ width: `${prof ?? 70}%` }}
-            />
-          </div>
-          {usedIn.length > 0 && (
-            <div className="mt-2 border-t border-line pt-2">
-              <p className="text-[10px] font-medium text-muted">Used in:</p>
-              <ul className="mt-1 space-y-0.5">
-                {usedIn.slice(0, 3).map((p) => (
-                  <li key={p} className="text-[11px] text-ink">{p}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+    <article
+      className={`exp-card group relative overflow-hidden rounded-[22px] p-7 sm:p-9 transition-all duration-300 ${
+        featured ? 'min-h-[320px] bg-coral text-canvas lg:row-span-2' : 'min-h-[240px] bg-mist text-ink'
+      }`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div
+          className={`flex h-11 w-11 items-center justify-center rounded-full border ${
+            featured ? 'border-canvas/30' : 'border-ink/15'
+          }`}
+        >
+          <Icon size={21} strokeWidth={1.5} />
         </div>
+        <span className={`font-mono text-xs ${featured ? 'text-canvas/65' : 'text-ink/55'}`}>
+          0{index + 1}
+        </span>
+      </div>
+      <div className="mt-10 max-w-md">
+        <h3 className="text-2xl font-bold tracking-[-0.05em]">{item.title}</h3>
+        <p className={`mt-3 text-sm leading-6 ${featured ? 'text-canvas/75' : 'text-ink/70'}`}>
+          {item.description}
+        </p>
+
+        {item.tools?.length > 0 && (
+          <div className="mt-5">
+            <div className="flex flex-wrap gap-2">
+              {item.tools.map((tool) => {
+                const isActive = activeTool === tool
+                return (
+                  <button
+                    key={`${item.id}-${tool}`}
+                    type="button"
+                    onClick={() => setActiveTool(isActive ? null : tool)}
+                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? featured
+                          ? 'border border-canvas bg-canvas text-ink font-bold shadow-sm scale-[1.03]'
+                          : 'border border-coral bg-coral text-canvas font-bold shadow-sm scale-[1.03]'
+                        : featured
+                        ? 'border border-canvas/25 bg-canvas/10 text-canvas hover:bg-canvas/20 hover:border-canvas/40'
+                        : 'border border-ink/15 bg-canvas/70 text-ink hover:bg-canvas hover:border-ink/30'
+                    }`}
+                  >
+                    <span>{tool}</span>
+                    <ChevronDown
+                      size={11}
+                      className={`transition-transform duration-200 ${
+                        isActive ? 'rotate-180' : 'opacity-60'
+                      }`}
+                    />
+                  </button>
+                )
+              })}
+            </div>
+
+            {activeTool && (
+              <div
+                className={`mt-4 rounded-xl border p-4 transition-all duration-300 ${
+                  featured
+                    ? 'border-canvas/25 bg-ink/40 text-canvas backdrop-blur-md'
+                    : 'border-line bg-canvas text-ink shadow-soft'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sm">{activeTool}</span>
+                    <span className={`text-[11px] ${featured ? 'text-canvas/70' : 'text-muted'}`}>
+                      Proficiency
+                    </span>
+                  </div>
+                  <span
+                    className={`font-mono text-xs font-bold ${
+                      featured ? 'text-canvas' : 'text-coral'
+                    }`}
+                  >
+                    {activeProf}%
+                  </span>
+                </div>
+
+                <div
+                  className={`mt-2 h-1.5 w-full overflow-hidden rounded-full ${
+                    featured ? 'bg-canvas/20' : 'bg-line'
+                  }`}
+                >
+                  <div
+                    className={`h-full rounded-full transition-all duration-500 ease-out ${
+                      featured ? 'bg-canvas' : 'bg-coral'
+                    }`}
+                    style={{ width: `${activeProf}%` }}
+                  />
+                </div>
+
+                {activeUsedIn.length > 0 && (
+                  <div
+                    className={`mt-3 border-t pt-2.5 ${
+                      featured ? 'border-canvas/15' : 'border-line'
+                    }`}
+                  >
+                    <p
+                      className={`text-[10px] font-medium uppercase tracking-wider ${
+                        featured ? 'text-canvas/60' : 'text-muted'
+                      }`}
+                    >
+                      Used in projects:
+                    </p>
+                    <div className="mt-1.5 flex flex-wrap gap-1.5">
+                      {activeUsedIn.map((project) => (
+                        <span
+                          key={project}
+                          className={`rounded-md px-2 py-0.5 text-[11px] font-medium ${
+                            featured
+                              ? 'bg-canvas/15 text-canvas border border-canvas/20'
+                              : 'bg-mist/60 text-ink border border-line/80'
+                          }`}
+                        >
+                          {project}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+      {featured && (
+        <div
+          className="absolute -bottom-10 -right-7 hidden h-44 w-44 rounded-full border border-canvas/25 transition-transform duration-500 group-hover:scale-110 md:block"
+          aria-hidden="true"
+        />
       )}
-    </div>
+    </article>
   )
 }
 
@@ -89,13 +189,13 @@ export default function Expertise({ data = [], softSkills = [] }) {
   useGSAP(() => {
     gsap.fromTo('.exp-label', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT,
       scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } })
-    gsap.fromTo('.exp-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+    gsap.fromTo('.exp-heading', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE_OUT,
       scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true } })
     gsap.fromTo('.exp-card', { opacity: 0, y: 24 },
       { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT, stagger: 0.09,
         scrollTrigger: { trigger: '.exp-grid', start: 'top 82%', once: true } })
     gsap.fromTo('.skill-chip', { opacity: 0, scale: 0.88 },
-      { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.05,
+      { opacity: 1, scale: 1, duration: 0.5, ease: EASE_BOUNCE, stagger: 0.05,
         scrollTrigger: { trigger: '.skill-list', start: 'top 88%', once: true } })
   }, { scope: ref, revertOnUpdate: true })
 
@@ -108,35 +208,9 @@ export default function Expertise({ data = [], softSkills = [] }) {
         </div>
 
         <div className="exp-grid mt-14 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          {data.map((item, index) => {
-            const Icon = iconMap[item.icon] ?? Code2
-            const featured = index === 0
-            return (
-              <article key={item.id}
-                className={`exp-card group relative overflow-hidden rounded-[22px] p-7 sm:p-9 ${featured ? 'min-h-[300px] bg-coral text-canvas lg:row-span-2' : 'min-h-[230px] bg-mist text-ink'}`}>
-                <div className="flex items-start justify-between gap-4">
-                  <div className={`flex h-11 w-11 items-center justify-center rounded-full border ${featured ? 'border-canvas/30' : 'border-ink/15'}`}>
-                    <Icon size={21} strokeWidth={1.5} />
-                  </div>
-                  <span className={`font-mono text-xs ${featured ? 'text-canvas/65' : 'text-ink/55'}`}>0{index + 1}</span>
-                </div>
-                <div className="mt-16 max-w-md">
-                  <h3 className="text-2xl font-bold tracking-[-0.05em]">{item.title}</h3>
-                  <p className={`mt-3 text-sm leading-6 ${featured ? 'text-canvas/75' : 'text-ink/70'}`}>{item.description}</p>
-                  {item.tools?.length > 0 && (
-                    <div className={`mt-5 flex flex-wrap gap-2 ${featured ? 'text-canvas/80' : 'text-ink/70'}`}>
-                      {item.tools.map((tool) => (
-                        <SkillTag key={`${item.id}-${tool}`} tool={tool} />
-                      ))}
-                    </div>
-                  )}
-                </div>
-                {featured && (
-                  <div className="absolute -bottom-10 -right-7 hidden h-44 w-44 rounded-full border border-canvas/25 transition-transform duration-500 group-hover:scale-110 md:block" aria-hidden="true" />
-                )}
-              </article>
-            )
-          })}
+          {data.map((item, index) => (
+            <CategoryCard key={item.id} item={item} index={index} />
+          ))}
         </div>
         {softSkills.length > 0 && (
           <div className="mt-10 border-t border-line pt-6">
