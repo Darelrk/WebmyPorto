@@ -2,6 +2,7 @@ import { ArrowUpRight, FlaskConical, Search, Database, Cpu, CheckCircle2 } from 
 import { useRef } from 'react'
 import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
 import GlowButton from './ui/GlowButton'
+import SpotlightCard from './ui/SpotlightCard'
 import ResearchChart from './ResearchChart'
 
 const PIPELINE_STEPS = [
@@ -134,14 +135,22 @@ export default function FeaturedResearch({ data }) {
               <h2 className="mt-8 max-w-xl text-[clamp(2.8rem,5.4vw,5rem)] font-bold leading-[0.95] tracking-[-0.075em]">{data.title}</h2>
               <p className="mt-6 max-w-xl text-base leading-7 text-canvas/70">{data.problem}</p>
               <div className="mt-9 grid gap-6 border-t border-canvas/15 pt-6 sm:grid-cols-2">
-                <div className="res-badge rounded-lg bg-canvas/5 p-4">
+                <SpotlightCard
+                  as="div"
+                  spotlightColor="rgba(232, 93, 74, 0.22)"
+                  className="res-badge rounded-lg border border-canvas/10 bg-canvas/5 p-4 transition-all duration-300 hover:border-canvas/25"
+                >
                   <p className="text-xs font-bold text-coral">Method</p>
                   <p className="mt-2 text-sm leading-6 text-canvas/70">{data.solution}</p>
-                </div>
-                <div className="res-badge rounded-lg bg-canvas/5 p-4">
+                </SpotlightCard>
+                <SpotlightCard
+                  as="div"
+                  spotlightColor="rgba(232, 93, 74, 0.22)"
+                  className="res-badge rounded-lg border border-canvas/10 bg-canvas/5 p-4 transition-all duration-300 hover:border-canvas/25"
+                >
                   <p className="text-xs font-bold text-coral">Evidence</p>
                   <p className="mt-2 text-sm leading-6 text-canvas/70">{data.results}</p>
-                </div>
+                </SpotlightCard>
               </div>
               <GlowButton href={data.link} target="_blank" rel="noreferrer"
                 className="mt-9 inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-canvas hover:text-ink active:translate-y-0">

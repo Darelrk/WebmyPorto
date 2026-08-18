@@ -1,7 +1,7 @@
 import { ArrowUpRight, Award, CalendarDays } from 'lucide-react'
 import { useRef } from 'react'
 import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
-
+import SpotlightCard from './ui/SpotlightCard'
 export default function Education({ educationData = [], certificationData = [] }) {
   const reduceMotion = useReducedMotionSafe()
   const ref = useRef(null)
@@ -34,7 +34,11 @@ export default function Education({ educationData = [], certificationData = [] }
         </div>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
-          <article className="edu-current relative overflow-hidden rounded-[24px] bg-ink p-7 text-canvas sm:p-9">
+          <SpotlightCard
+            as="article"
+            spotlightColor="rgba(232, 93, 74, 0.18)"
+            className="edu-current relative overflow-hidden rounded-[24px] bg-ink p-7 text-canvas sm:p-9 transition-all duration-300 hover:shadow-float"
+          >
             <div className="absolute -right-16 -top-16 hidden h-48 w-48 rounded-full border border-canvas/10 md:block" aria-hidden="true" />
             <div className="relative flex items-start justify-between gap-4">
               <p className="font-mono text-[10px] font-bold text-canvas/60">Current study</p>
@@ -47,7 +51,7 @@ export default function Education({ educationData = [], certificationData = [] }
               <span className="rounded-full border border-coral/60 px-3 py-1.5 text-coral">GPA {education?.gpa}</span>
             </div>
             <p className="relative mt-8 max-w-md text-sm leading-6 text-canvas/65">{education?.description}</p>
-          </article>
+          </SpotlightCard>
 
           <div>
             <div className="flex items-center justify-between border-b border-line pb-4">
@@ -56,7 +60,10 @@ export default function Education({ educationData = [], certificationData = [] }
             </div>
             <div className="edu-cert-list">
               {certificationData.map((item, index) => (
-                <article key={item.id}
+                <SpotlightCard
+                  key={item.id}
+                  as="article"
+                  spotlightColor="rgba(232, 93, 74, 0.15)"
                   className="edu-cert group relative mb-4 overflow-hidden rounded-2xl border border-line bg-canvas p-5 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-float sm:p-6"
                   style={{ zIndex: certificationData.length - index }}
                 >
@@ -75,7 +82,7 @@ export default function Education({ educationData = [], certificationData = [] }
                     </div>
                     <ArrowUpRight className="mt-1 text-muted transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-coral" size={19} strokeWidth={1.5} />
                   </div>
-                </article>
+                </SpotlightCard>
               ))}
             </div>
           </div>

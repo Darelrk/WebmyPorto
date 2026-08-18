@@ -1,7 +1,7 @@
 import { ArrowUpRight, Briefcase } from 'lucide-react'
 import { useRef } from 'react'
 import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
-
+import SpotlightCard from './ui/SpotlightCard'
 export default function Experience({ data = [] }) {
   const reduceMotion = useReducedMotionSafe()
   const ref = useRef(null)
@@ -27,7 +27,7 @@ export default function Experience({ data = [] }) {
           </div>
           <div className="exp-list divide-y divide-line/80 border-y border-line/80">
             {data.map((item, index) => (
-              <article key={item.id} className="exp-item grid gap-6 py-9 sm:grid-cols-[0.2fr_1fr] sm:gap-8">
+              <SpotlightCard key={item.id} as="article" spotlightColor="rgba(232, 93, 74, 0.12)" className="exp-item grid gap-6 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:bg-canvas/60 sm:grid-cols-[0.2fr_1fr] sm:gap-8">
                 <div className="flex items-start justify-between gap-4 sm:block">
                   <span className="font-mono text-xs text-muted">0{index + 1}</span>
                   <span className="rounded-full border border-line px-3 py-1.5 text-xs text-muted sm:mt-4 sm:inline-block">{item.period}</span>
@@ -59,7 +59,7 @@ export default function Experience({ data = [] }) {
                     Let&apos;s work together <ArrowUpRight size={16} strokeWidth={1.8} />
                   </a>
                 </div>
-              </article>
+              </SpotlightCard>
             ))}
           </div>
         </div>

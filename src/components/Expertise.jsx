@@ -2,7 +2,7 @@ import { BarChart3, Brain, ChevronDown, Code2, Database, Settings2 } from 'lucid
 import { useRef, useState } from 'react'
 import { useGSAP, EASE_OUT, EASE_BOUNCE, gsap } from '../lib/gsap'
 import TextReveal from './ui/TextReveal'
-
+import SpotlightCard from './ui/SpotlightCard'
 const iconMap = {
   Brain: Brain,
   Settings: Settings2,
@@ -47,8 +47,10 @@ function CategoryCard({ item, index }) {
   const activeUsedIn = activeTool ? (USED_IN[activeTool] || []) : []
 
   return (
-    <article
-      className={`exp-card group relative overflow-hidden rounded-[22px] p-7 sm:p-9 transition-all duration-300 ${
+    <SpotlightCard
+      as="article"
+      spotlightColor={featured ? 'rgba(255, 255, 255, 0.22)' : 'rgba(232, 93, 74, 0.16)'}
+      className={`exp-card group relative overflow-hidden rounded-[22px] p-7 sm:p-9 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft ${
         featured ? 'min-h-[320px] bg-coral text-canvas lg:row-span-2' : 'min-h-[240px] bg-mist text-ink'
       }`}
     >
@@ -179,7 +181,7 @@ function CategoryCard({ item, index }) {
           aria-hidden="true"
         />
       )}
-    </article>
+    </SpotlightCard>
   )
 }
 

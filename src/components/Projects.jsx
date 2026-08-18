@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
 import TextReveal from './ui/TextReveal'
 import TiltCard from './ui/TiltCard'
-
+import SpotlightCard from './ui/SpotlightCard'
 export default function Projects({ data = [] }) {
   const reduceMotion = useReducedMotionSafe()
   const ref = useRef(null)
@@ -55,12 +55,14 @@ export default function Projects({ data = [] }) {
         {rest.length > 0 && (
           <div className="proj-list mt-10 divide-y divide-line/80 border-y border-line/80">
             {rest.map((project, index) => (
-              <a
+              <SpotlightCard
                 key={project.id}
+                as="a"
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="proj-item group grid gap-4 py-7 transition-colors hover:text-coral sm:grid-cols-[0.15fr_0.85fr_auto] sm:items-center sm:gap-7"
+                spotlightColor="rgba(232, 93, 74, 0.12)"
+                className="proj-item group grid gap-4 rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:bg-canvas/60 hover:text-coral sm:grid-cols-[0.15fr_0.85fr_auto] sm:items-center sm:gap-7"
               >
                 <span className="font-mono text-xs text-muted">0{index + 2}</span>
                 <div>
@@ -75,7 +77,7 @@ export default function Projects({ data = [] }) {
                   )}
                 </div>
                 <ArrowUpRight className="text-muted transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-coral" size={20} strokeWidth={1.5} />
-              </a>
+              </SpotlightCard>
             ))}
           </div>
         )}

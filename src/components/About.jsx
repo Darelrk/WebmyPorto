@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import { useRef } from 'react'
 import { useGSAP, EASE_OUT, EASE_BOUNCE, useReducedMotionSafe, gsap } from '../lib/gsap'
-
+import SpotlightCard from './ui/SpotlightCard'
 export default function About({ data, expertise = [] }) {
   const reduceMotion = useReducedMotionSafe()
   const ref = useRef(null)
@@ -42,13 +42,18 @@ export default function About({ data, expertise = [] }) {
           </div>
           <div className="about-grid mt-12 grid gap-4 sm:grid-cols-[1.35fr_0.65fr]">
             {highlights.map((item, index) => (
-              <article key={item.title} className={`hl-card rounded-[22px] p-6 sm:min-h-[210px] ${item.className}`}>
+              <SpotlightCard
+                key={item.title}
+                as="article"
+                spotlightColor={index === 0 ? 'rgba(232, 93, 74, 0.20)' : 'rgba(232, 93, 74, 0.15)'}
+                className={`hl-card rounded-[22px] p-6 sm:min-h-[210px] transition-all duration-300 hover:-translate-y-1 hover:shadow-soft ${item.className}`}
+              >
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="max-w-[14rem] text-xl font-bold tracking-[-0.04em]">{item.title}</h3>
-                  <ArrowUpRight size={19} strokeWidth={1.6} />
+                  <ArrowUpRight size={19} strokeWidth={1.6} className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </div>
                 <p className={`mt-16 max-w-sm text-sm leading-6 ${index === 0 ? 'text-canvas/70' : 'text-ink/70'}`}>{item.text}</p>
-              </article>
+              </SpotlightCard>
             ))}
           </div>
         </div>
