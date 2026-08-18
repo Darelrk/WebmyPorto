@@ -106,7 +106,6 @@
       { "model": "CTGAN-3k", "value": 82.83, "label": "82.83%" },
       { "model": "Original", "value": 87.46, "label": "87.46%" }
     ],
-    "accuracyTrend": [82.0, 83.4, 85.1, 86.8, 88.2, 90.5, 93.53],
     "link": "https://github.com/Darelrk/Tabular-Synthesis-LLM"
   },
   "experience": [
