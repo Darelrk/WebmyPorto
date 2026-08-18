@@ -12,7 +12,8 @@ export default function ResearchChart({ data = [], title = 'Research results' })
 
   useGSAP(() => {
     if (reduceMotion) return
-    gsap.fromTo('.chart-bar',
+    gsap.fromTo(
+      '.chart-bar',
       { scaleY: 0, opacity: 0 },
       {
         scaleY: 1,
@@ -32,17 +33,29 @@ export default function ResearchChart({ data = [], title = 'Research results' })
         {chartData.map((item) => (
           <div key={item.model} className="flex h-full flex-1 flex-col justify-end gap-3">
             <div
-              className={`chart-bar w-full rounded-t-[5px] ${item.featured ? 'bg-coral' : 'bg-canvas/35'}`}
-              style={{ height: `${valueRange > 0 ? 25 + ((item.value - minValue) / valueRange) * 75 : 100}%` }}
+              className={`chart-bar w-full rounded-t-[5px] ${
+                item.featured ? 'bg-coral' : 'bg-canvas/35'
+              }`}
+              style={{
+                height: `${
+                  valueRange > 0 ? 25 + ((item.value - minValue) / valueRange) * 75 : 100
+                }%`,
+              }}
               title={`${item.model}: ${item.label}`}
             />
-            <div className="min-h-8 text-center font-mono text-[9px] leading-3 text-canvas/60">{item.model}</div>
+            <div className="min-h-8 text-center font-mono text-[9px] leading-3 text-canvas/60">
+              {item.model}
+            </div>
           </div>
         ))}
       </div>
       <div className="mt-4 flex items-center justify-between gap-4 text-xs text-canvas/60">
         <span>Framework · Accuracy</span>
-        {featured && <span className="font-mono text-coral">{featured.model} {featured.label}</span>}
+        {featured && (
+          <span className="font-mono text-coral">
+            {featured.model} {featured.label}
+          </span>
+        )}
       </div>
     </div>
   )
