@@ -1,6 +1,7 @@
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useReducedMotionSafe, gsap } from '../lib/gsap'
+import MagneticButton from './ui/MagneticButton'
 
 export default function Navbar({ data }) {
   const reduceMotion = useReducedMotionSafe()
@@ -58,9 +59,9 @@ export default function Navbar({ data }) {
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
             {theme === 'dark' ? <Sun size={16} strokeWidth={1.8} /> : <Moon size={16} strokeWidth={1.8} />}
           </button>
-          <a href={`mailto:${data.email}`} className="rounded-full bg-ink px-4 py-2.5 text-xs font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-coral active:translate-y-0">
+          <MagneticButton href={`mailto:${data.email}`} className="rounded-full bg-ink px-4 py-2.5 text-xs font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-coral active:translate-y-0">
             {data.cta}
-          </a>
+          </MagneticButton>
         </div>
         <button type="button" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink lg:hidden"
           onClick={() => setMobileMenuOpen((o) => !o)}

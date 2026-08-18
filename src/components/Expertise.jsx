@@ -1,6 +1,7 @@
 import { BarChart3, Brain, ChevronDown, Code2, Database, Settings2 } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { useGSAP, EASE_OUT, gsap } from '../lib/gsap'
+import TextReveal from './ui/TextReveal'
 
 const iconMap = {
   Brain: Brain,
@@ -55,7 +56,7 @@ function SkillTag({ tool }) {
         <ChevronDown size={10} className={`inline ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="absolute left-0 top-full z-20 mt-2 w-48 rounded-xl border border-line bg-canvas p-3 shadow-soft">
+        <div className="absolute left-0 top-full z-20 mt-2 w-[min(12rem,calc(100vw-2rem))] rounded-xl border border-line bg-canvas p-3 shadow-soft">
           <div className="flex items-center justify-between text-xs">
             <span className="font-semibold text-ink">Proficiency</span>
             <span className="text-coral">{prof ?? 70}%</span>
@@ -102,7 +103,7 @@ export default function Expertise({ data = [], softSkills = [] }) {
     <section id="expertise" ref={ref} className="border-b border-line/80">
       <div className="container-shell py-24 sm:py-32">
         <div className="max-w-3xl">
-          <h2 className="text-[clamp(2.7rem,5vw,4.7rem)] font-bold leading-[0.96] tracking-[-0.075em]">Tools that turn questions into useful systems.</h2>
+          <TextReveal as="h2" text="Tools that turn questions into useful systems." className="text-[clamp(2.7rem,5vw,4.7rem)] font-bold leading-[0.96] tracking-[-0.075em]" />
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">A practical toolkit for finding signal, testing ideas, and making the result useful to the people who need it.</p>
         </div>
 

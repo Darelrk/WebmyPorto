@@ -1,6 +1,7 @@
 import { ArrowUpRight, FlaskConical, Search, Database, Cpu, CheckCircle2 } from 'lucide-react'
 import { useRef } from 'react'
 import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
+import GlowButton from './ui/GlowButton'
 import ResearchChart from './ResearchChart'
 
 const PIPELINE_STEPS = [
@@ -30,19 +31,30 @@ function CompareSlider({ data }) {
     const onDown = () => { dragging = true }
     const onUp = () => { dragging = false }
     const onMove = (e) => { if (dragging) setPos(e.clientX ?? e.touches?.[0]?.clientX) }
+    const onTouchMove = (e) => {
+      if (dragging && e.cancelable) e.preventDefault()
+      onMove(e)
+    }
     const onClick = (e) => setPos(e.clientX ?? e.touches?.[0]?.clientX)
 
     wrap.addEventListener('mousedown', onDown)
+    wrap.addEventListener('touchstart', onDown, { passive: true })
     wrap.addEventListener('click', onClick)
     window.addEventListener('mouseup', onUp)
+    window.addEventListener('touchend', onUp)
+    window.addEventListener('touchcancel', onUp)
     window.addEventListener('mousemove', onMove)
-    wrap.addEventListener('touchmove', onMove, { passive: true })
+    wrap.addEventListener('touchmove', onTouchMove, { passive: false })
 
     return () => {
       wrap.removeEventListener('mousedown', onDown)
+      wrap.removeEventListener('touchstart', onDown)
       wrap.removeEventListener('click', onClick)
       window.removeEventListener('mouseup', onUp)
+      window.removeEventListener('touchend', onUp)
+      window.removeEventListener('touchcancel', onUp)
       window.removeEventListener('mousemove', onMove)
+      wrap.removeEventListener('touchmove', onTouchMove)
     }
   }, { scope: wrapRef })
 
@@ -131,10 +143,10 @@ export default function FeaturedResearch({ data }) {
                   <p className="mt-2 text-sm leading-6 text-canvas/70">{data.results}</p>
                 </div>
               </div>
-              <a href={data.link} target="_blank" rel="noreferrer"
+              <GlowButton href={data.link} target="_blank" rel="noreferrer"
                 className="mt-9 inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-canvas hover:text-ink active:translate-y-0">
                 View study <ArrowUpRight size={16} strokeWidth={1.8} />
-              </a>
+              </GlowButton>
 
               {/* Process timeline */}
               <div className="pipe-line mt-10 border-t border-canvas/15 pt-6">
