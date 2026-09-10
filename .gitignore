@@ -119,3 +119,7 @@ Desktop.ini
 .fix-build/
 .tmp-prev/
 .tmp-build/
+
+# Secrets
+.env*
+!.env.example
