@@ -1,5 +1,5 @@
 // Motion tokens + reduced-motion gate shared across the portfolio.
-// ponytail: no reveal()/STAGGER/DUR here — components animate inline with gsap.fromTo.
+// ponytail: no reveal()/STAGGER/DUR here; components animate inline with gsap.fromTo.
 export const EASE = {
   entrance: 'expo.out', // matches legacy EASE_OUT used widely
 }
