@@ -116,7 +116,7 @@ export default function ProjectCatalog() {
               : repos.map((repo) => <RepoCard key={repo.name} repo={repo} />)}
           </div>
 
-          <a href="/" className="mt-16 inline-flex items-center gap-2 text-sm font-semibold text-coral transition-transform hover:-translate-x-0.5">
+          <a href="/" className="mt-16 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-coral">
             <ArrowLeft size={16} strokeWidth={1.8} />
             Back to portfolio
           </a>
