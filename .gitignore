@@ -114,3 +114,8 @@ Desktop.ini
 .vscode
 *.swp
 *.swo
+
+# Local verification build outputs
+.fix-build/
+.tmp-prev/
+.tmp-build/
