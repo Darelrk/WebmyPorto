@@ -1,0 +1,56 @@
+[
+  {
+    "name": "credit-gap-forecaster",
+    "description": "Predictive Early Warning System for Credit-to-GDP Gap using hybrid LSTM, XGBoost, and ARIMA models.",
+    "language": "Python",
+    "stars": 1,
+    "updatedAt": "2026-03-10",
+    "topics": ["Python", "PyTorch", "LSTM", "XGBoost", "ARIMA"],
+    "url": "https://github.com/Darelrk/credit-gap-forecaster"
+  },
+  {
+    "name": "Tabular-Synthesis-LLM",
+    "description": "Compares Large Language Model-based (GReaT) versus GAN-based tabular data generation methods.",
+    "language": "Python",
+    "stars": 0,
+    "updatedAt": "2026-02-14",
+    "topics": ["Python", "LLM", "Data Synthesis", "Machine Learning"],
+    "url": "https://github.com/Darelrk/Tabular-Synthesis-LLM"
+  },
+  {
+    "name": "mae-hybrid-imputation-study",
+    "description": "Hybrid Masked Autoencoder study for missing-data imputation on tabular datasets.",
+    "language": "Python",
+    "stars": 0,
+    "updatedAt": "2026-02-14",
+    "topics": ["Python", "Deep Learning", "MAE", "Data Imputation"],
+    "url": "https://github.com/Darelrk/mae-hybrid-imputation-study"
+  },
+  {
+    "name": "ContainerPort-ID",
+    "description": "Weekly container-activity forecasting and early warning across Indonesian ports.",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "updatedAt": "2026-09-10",
+    "topics": ["Forecasting", "Time Series", "Indonesia"],
+    "url": "https://github.com/Darelrk/ContainerPort-ID"
+  },
+  {
+    "name": "Dashboard-Analisis-Universitas-LPDP",
+    "description": "Global university opportunity analysis dashboard built on the LPDP scholarship list.",
+    "language": "Python",
+    "stars": 0,
+    "updatedAt": "2026-02-15",
+    "topics": ["Analytics", "SQL", "Looker Studio"],
+    "url": "https://github.com/Darelrk/Dashboard-Analisis-Universitas-LPDP"
+  },
+  {
+    "name": "Sleep-Health-and-Lifestyle-Dataset",
+    "description": "Exploratory and statistical analysis of the Sleep Health and Lifestyle dataset.",
+    "language": "Python",
+    "stars": 0,
+    "updatedAt": "2026-02-15",
+    "topics": ["Python", "Pandas", "NumPy", "Looker Studio"],
+    "url": "https://github.com/Darelrk/Sleep-Health-and-Lifestyle-Dataset"
+  }
+]

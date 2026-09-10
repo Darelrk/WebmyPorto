@@ -81,6 +81,10 @@ export default function Projects({ data = [] }) {
             ))}
           </div>
         )}
+
+        <a href="/projects" className="mt-10 inline-flex items-center gap-1.5 text-sm font-semibold text-coral transition-transform hover:translate-x-1">
+          View full catalog <ArrowUpRight size={15} strokeWidth={2} />
+        </a>
       </div>
     </section>
   )
