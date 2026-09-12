@@ -8,7 +8,7 @@ import ResearchChart from './ResearchChart'
 const PIPELINE_STEPS = [
   { icon: Search, label: 'Problem', desc: 'Gaps in synthetic tabular data: fidelity vs. privacy trade-off' },
   { icon: Database, label: 'Data', desc: 'Adult Census + California Housing, benchmark splits' },
-  { icon: Cpu, label: 'Modeling', desc: 'GReaT (LLM), CTGAN, SDG — 3,000 synthetic rows each' },
+  { icon: Cpu, label: 'Modeling', desc: 'GReaT (LLM), CTGAN, SDG, 3,000 synthetic rows each' },
   { icon: CheckCircle2, label: 'Validation', desc: 'XGBoost downstream classifier, TSTR protocol' },
 ]
 

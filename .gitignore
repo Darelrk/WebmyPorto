@@ -114,3 +114,15 @@ Desktop.ini
 .vscode
 *.swp
 *.swo
+
+# Local verification build outputs
+.fix-build/
+.tmp-prev/
+.tmp-build/
+
+
+# TanStack Router generator temp files
+.tanstack/tmp/
+# Secrets
+.env*
+!.env.example

@@ -6,7 +6,8 @@
   color-scheme: light;
   --canvas: 244 244 239;
   --ink: 20 35 59;
-  --muted: 96 108 128;
+  --ink-soft: 44 61 86;
+  --muted: 90 102 123; /* was 102 114 134, 4.41:1 on canvas; now 5.26:1, WCAG AA */
   --coral: 232 93 74;
   --mist: 198 221 241;
   --line: 216 216 207;
