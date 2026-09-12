@@ -1,31 +1,19 @@
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { useRef } from 'react'
-import { useGSAP, EASE_OUT, EASE_IN_OUT, EASE_BOUNCE, EASE_ELASTIC, useReducedMotionSafe, gsap } from '../lib/gsap'
-import TextReveal from './ui/TextReveal'
+import { useGSAP, EASE_OUT, EASE_IN_OUT, EASE_BOUNCE, EASE_ELASTIC, gsap } from '../lib/gsap'
 
 export default function Hero({ data }) {
   const ref = useRef(null)
-  const reduce = useReducedMotionSafe()
-  const onHeroMove = (e) => {
-    if (reduce || !ref.current) return
-    const r = ref.current.getBoundingClientRect()
-    ref.current.style.setProperty('--mx', `${e.clientX - r.left}px`)
-    ref.current.style.setProperty('--my', `${e.clientY - r.top}px`)
-  }
 
   useGSAP(() => {
-    if (reduce) {
-      gsap.set('.hero-stat', { opacity: 1 })
-      return
-    }
     gsap.timeline()
       .fromTo('.hero-eyebrow', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT })
-      .fromTo('.hero-title', { opacity: 0 }, { opacity: 1, duration: 0.85, ease: EASE_OUT }, '-=0.2')
+      .fromTo('.hero-title', { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.85, ease: EASE_OUT }, '-=0.2')
       .fromTo('.hero-subtitle', { opacity: 0, y: 20 }, { opacity: 0.88, y: 0, duration: 0.65, ease: EASE_OUT }, '-=0.35')
       .fromTo('.hero-cta', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, ease: EASE_OUT }, '-=0.45')
       .fromTo('.hero-image-wrap', { opacity: 0, scale: 0.94, y: 24 }, { opacity: 1, scale: 1, y: 0, duration: 0.95, ease: EASE_IN_OUT }, '-=0.55')
       .fromTo('.hero-card-coral', { opacity: 0, y: 10, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: EASE_BOUNCE }, '-=0.25')
-      .fromTo('.hero-card-open', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_BOUNCE }, '-=0.3')
+      .fromTo('.hero-card-open', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.4)' }, '-=0.3')
 
     // Parallax scrub
     gsap.to('.hero-image-wrap', {
@@ -92,12 +80,13 @@ export default function Hero({ data }) {
   }, { scope: ref })
 
   return (
-    <section id="home" ref={ref} onMouseMove={onHeroMove} className="relative overflow-hidden border-b border-line/80">
-      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 [body:hover_&]:opacity-100" style={{ background: 'radial-gradient(600px circle at var(--mx,-100%) var(--my,-100%), rgba(232,93,74,0.12), transparent 60%)' }} />
+    <section id="home" ref={ref} className="relative overflow-hidden border-b border-line/80">
       <div className="container-shell grid min-h-[calc(100dvh-72px)] items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-20 lg:py-16">
         <div className="hero-left">
-          <TextReveal as="h1" text={data.title}
-            className="hero-title max-w-3xl text-[clamp(3rem,5vw,5.5rem)] font-bold leading-[0.94] tracking-[-0.085em] text-ink" />
+          <p className="eyebrow hero-eyebrow mb-5">{data.eyebrow}</p>
+          <h1 className="hero-title max-w-3xl text-[clamp(3rem,5vw,5.5rem)] font-bold leading-[0.94] tracking-[-0.085em] text-ink">
+            {data.title}
+          </h1>
           <p className="hero-subtitle mt-7 max-w-xl text-base leading-7 text-muted sm:text-lg">
             {data.subtitle}
           </p>
@@ -156,7 +145,7 @@ export default function Hero({ data }) {
             <p className="mt-6 text-4xl font-bold tracking-[-0.08em]">{data.featuredStudy}</p>
             <p className="mt-2 text-xs leading-4 text-canvas/80">{data.featuredDescription}</p>
           </div>
-          <div className="hero-card-open relative mt-3 w-full rounded-2xl border border-line bg-canvas p-4 shadow-soft sm:absolute sm:bottom-4 sm:left-2 sm:mt-0 sm:w-48">
+          <div className="hero-card-open relative mt-3 w-full rounded-2xl border border-line bg-canvas/95 p-4 shadow-soft sm:absolute sm:bottom-4 sm:left-2 sm:mt-0 sm:w-48">
             <p className="text-xs font-bold text-ink">Open to</p>
             <p className="mt-1 text-xs leading-4 text-muted">Data science roles and project collaboration.</p>
           </div>

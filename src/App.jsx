@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useRef, useLayoutEffect } from 'react'
-import { useGSAP, gsap, useReducedMotionSafe } from './lib/gsap'
+import { useGSAP, gsap, EASE_OUT, useReducedMotionSafe } from './lib/gsap'
 import content from './data/content.json'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -30,7 +30,7 @@ export default function App() {
     const ctx = gsap.context(() => {
       gsap.fromTo(rootRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.45, ease: 'expo.out' }
+        { opacity: 1, duration: 0.45, ease: EASE_OUT }
       )
     })
     return () => ctx.revert()

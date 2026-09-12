@@ -4,7 +4,7 @@
     "links": [
       { "name": "About", "href": "#about" },
       { "name": "Research", "href": "#research" },
-      { "name": "Projects", "href": "#projects" },
+      { "name": "Projects", "href": "/projects" },
       { "name": "Experience", "href": "#experience" },
       { "name": "Contact", "href": "#contact" }
     ],
@@ -179,6 +179,14 @@
       "description": "Forecasts Indonesia's Credit-to-GDP Gap with the HP Filter, Attention-based LSTM, XGBoost, ARIMA, and an ensemble model to support financial-stability monitoring.",
       "tags": ["Python", "PyTorch", "LSTM", "XGBoost", "ARIMA"],
       "link": "https://github.com/Darelrk/credit-gap-forecaster"
+    }
+    ,
+    {
+      "id": 6,
+      "title": "ContainerPort-ID",
+      "description": "Weekly container-activity forecasting and early warning across Indonesia's top-10 container ports, with walk-forward validated model selection and an anomaly layer that flags documented disruptions.",
+      "tags": ["Time Series", "Forecasting", "LSTM", "Anomaly Detection"],
+      "link": "https://github.com/Darelrk/ContainerPort-ID"
     }
   ],
   "footer": {

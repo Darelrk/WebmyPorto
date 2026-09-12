@@ -1,6 +1,7 @@
 import { ArrowUpRight, Github, Globe2, Linkedin, Mail } from 'lucide-react'
 import { useRef } from 'react'
-import { useGSAP, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
+import MagneticButton from './ui/MagneticButton'
 
 export default function Footer({ data = {} }) {
   const reduceMotion = useReducedMotionSafe()
@@ -9,9 +10,9 @@ export default function Footer({ data = {} }) {
 
   useGSAP(() => {
     if (reduceMotion) return
-    gsap.fromTo('.footer-heading', { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out',
+    gsap.fromTo('.footer-heading', { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.75, ease: EASE_OUT,
       scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } })
-    gsap.fromTo('.footer-desc', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', delay: 0.12,
+    gsap.fromTo('.footer-desc', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT, delay: 0.12,
       scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } })
     gsap.fromTo('.social-link', { opacity: 0, y: 12 },
       { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.07,
@@ -27,17 +28,10 @@ export default function Footer({ data = {} }) {
           <p className="footer-desc mt-5 max-w-xl text-base leading-7 text-muted">{data.description}</p>
         </div>
         <div className="flex flex-col items-start gap-4 lg:items-end">
-          <a
-            href={`mailto:${data.email ?? 'darelrafif.kz@gmail.com'}`}
-            className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-ink active:translate-y-0"
-          >
+          <MagneticButton href={linkedin?.url ?? '#'} target="_blank" rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-ink active:translate-y-0">
             Let&apos;s work together <ArrowUpRight size={16} strokeWidth={1.8} />
-          </a>
-          {linkedin?.url && linkedin.url !== '#' && (
-            <a href={linkedin.url} target="_blank" rel="noreferrer" className="text-sm font-bold text-ink transition hover:text-coral">
-              LinkedIn profile
-            </a>
-          )}
+          </MagneticButton>
         </div>
       </div>
 

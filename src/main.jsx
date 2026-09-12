@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
-import App from './App.jsx'
+import { RouterProvider } from '@tanstack/react-router'
+import { getRouter } from './router'
 import './index.css'
+import { prefersReducedMotion } from './lib/motion'
 
-// Lenis smooth scroll → GSAP ScrollTrigger sync
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => {
@@ -28,7 +29,7 @@ gsap.ticker.add((time) => { lenis.raf(time * 1000) })
 gsap.ticker.lagSmoothing(0)
 
 // Honor reduced-motion: disable Lenis smoothing if user prefers reduced motion
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+if (prefersReducedMotion()) {
   lenis.destroy()
 } else if (window.innerWidth < 768) {
   // Disable smooth scroll on mobile (touch devices jank with custom scroll)
@@ -36,8 +37,10 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.style.scrollBehavior = 'auto'
 }
 
+const router = getRouter()
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
