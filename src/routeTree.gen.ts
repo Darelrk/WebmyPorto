@@ -12,6 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as WorkContainerportIdRouteImport } from './routes/work/containerport-id'
+import { Route as WorkCreditGapForecasterRouteImport } from './routes/work/credit-gap-forecaster'
+import { Route as WorkDashboardAnalisisUniversitasLpdpRouteImport } from './routes/work/dashboard-analisis-universitas-lpdp'
+import { Route as WorkMaeHybridImputationStudyRouteImport } from './routes/work/mae-hybrid-imputation-study'
+import { Route as WorkSleepHealthAndLifestyleDatasetRouteImport } from './routes/work/sleep-health-and-lifestyle-dataset'
+import { Route as WorkTabularSynthesisLlmRouteImport } from './routes/work/tabular-synthesis-llm'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +33,108 @@ const WorkContainerportIdRoute = WorkContainerportIdRouteImport.update({
   path: '/work/containerport-id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkCreditGapForecasterRoute = WorkCreditGapForecasterRouteImport.update({
+  id: '/work/credit-gap-forecaster',
+  path: '/work/credit-gap-forecaster',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkDashboardAnalisisUniversitasLpdpRoute =
+  WorkDashboardAnalisisUniversitasLpdpRouteImport.update({
+    id: '/work/dashboard-analisis-universitas-lpdp',
+    path: '/work/dashboard-analisis-universitas-lpdp',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const WorkMaeHybridImputationStudyRoute =
+  WorkMaeHybridImputationStudyRouteImport.update({
+    id: '/work/mae-hybrid-imputation-study',
+    path: '/work/mae-hybrid-imputation-study',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const WorkSleepHealthAndLifestyleDatasetRoute =
+  WorkSleepHealthAndLifestyleDatasetRouteImport.update({
+    id: '/work/sleep-health-and-lifestyle-dataset',
+    path: '/work/sleep-health-and-lifestyle-dataset',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const WorkTabularSynthesisLlmRoute = WorkTabularSynthesisLlmRouteImport.update({
+  id: '/work/tabular-synthesis-llm',
+  path: '/work/tabular-synthesis-llm',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/projects': typeof ProjectsRoute
   '/work/containerport-id': typeof WorkContainerportIdRoute
+  '/work/credit-gap-forecaster': typeof WorkCreditGapForecasterRoute
+  '/work/dashboard-analisis-universitas-lpdp': typeof WorkDashboardAnalisisUniversitasLpdpRoute
+  '/work/mae-hybrid-imputation-study': typeof WorkMaeHybridImputationStudyRoute
+  '/work/sleep-health-and-lifestyle-dataset': typeof WorkSleepHealthAndLifestyleDatasetRoute
+  '/work/tabular-synthesis-llm': typeof WorkTabularSynthesisLlmRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/projects': typeof ProjectsRoute
   '/work/containerport-id': typeof WorkContainerportIdRoute
+  '/work/credit-gap-forecaster': typeof WorkCreditGapForecasterRoute
+  '/work/dashboard-analisis-universitas-lpdp': typeof WorkDashboardAnalisisUniversitasLpdpRoute
+  '/work/mae-hybrid-imputation-study': typeof WorkMaeHybridImputationStudyRoute
+  '/work/sleep-health-and-lifestyle-dataset': typeof WorkSleepHealthAndLifestyleDatasetRoute
+  '/work/tabular-synthesis-llm': typeof WorkTabularSynthesisLlmRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/projects': typeof ProjectsRoute
   '/work/containerport-id': typeof WorkContainerportIdRoute
+  '/work/credit-gap-forecaster': typeof WorkCreditGapForecasterRoute
+  '/work/dashboard-analisis-universitas-lpdp': typeof WorkDashboardAnalisisUniversitasLpdpRoute
+  '/work/mae-hybrid-imputation-study': typeof WorkMaeHybridImputationStudyRoute
+  '/work/sleep-health-and-lifestyle-dataset': typeof WorkSleepHealthAndLifestyleDatasetRoute
+  '/work/tabular-synthesis-llm': typeof WorkTabularSynthesisLlmRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects' | '/work/containerport-id'
+  fullPaths:
+    | '/'
+    | '/projects'
+    | '/work/containerport-id'
+    | '/work/credit-gap-forecaster'
+    | '/work/dashboard-analisis-universitas-lpdp'
+    | '/work/mae-hybrid-imputation-study'
+    | '/work/sleep-health-and-lifestyle-dataset'
+    | '/work/tabular-synthesis-llm'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects' | '/work/containerport-id'
-  id: '__root__' | '/' | '/projects' | '/work/containerport-id'
+  to:
+    | '/'
+    | '/projects'
+    | '/work/containerport-id'
+    | '/work/credit-gap-forecaster'
+    | '/work/dashboard-analisis-universitas-lpdp'
+    | '/work/mae-hybrid-imputation-study'
+    | '/work/sleep-health-and-lifestyle-dataset'
+    | '/work/tabular-synthesis-llm'
+  id:
+    | '__root__'
+    | '/'
+    | '/projects'
+    | '/work/containerport-id'
+    | '/work/credit-gap-forecaster'
+    | '/work/dashboard-analisis-universitas-lpdp'
+    | '/work/mae-hybrid-imputation-study'
+    | '/work/sleep-health-and-lifestyle-dataset'
+    | '/work/tabular-synthesis-llm'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProjectsRoute: typeof ProjectsRoute
   WorkContainerportIdRoute: typeof WorkContainerportIdRoute
+  WorkCreditGapForecasterRoute: typeof WorkCreditGapForecasterRoute
+  WorkDashboardAnalisisUniversitasLpdpRoute: typeof WorkDashboardAnalisisUniversitasLpdpRoute
+  WorkMaeHybridImputationStudyRoute: typeof WorkMaeHybridImputationStudyRoute
+  WorkSleepHealthAndLifestyleDatasetRoute: typeof WorkSleepHealthAndLifestyleDatasetRoute
+  WorkTabularSynthesisLlmRoute: typeof WorkTabularSynthesisLlmRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +160,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkContainerportIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/credit-gap-forecaster': {
+      id: '/work/credit-gap-forecaster'
+      path: '/work/credit-gap-forecaster'
+      fullPath: '/work/credit-gap-forecaster'
+      preLoaderRoute: typeof WorkCreditGapForecasterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/dashboard-analisis-universitas-lpdp': {
+      id: '/work/dashboard-analisis-universitas-lpdp'
+      path: '/work/dashboard-analisis-universitas-lpdp'
+      fullPath: '/work/dashboard-analisis-universitas-lpdp'
+      preLoaderRoute: typeof WorkDashboardAnalisisUniversitasLpdpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/mae-hybrid-imputation-study': {
+      id: '/work/mae-hybrid-imputation-study'
+      path: '/work/mae-hybrid-imputation-study'
+      fullPath: '/work/mae-hybrid-imputation-study'
+      preLoaderRoute: typeof WorkMaeHybridImputationStudyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/sleep-health-and-lifestyle-dataset': {
+      id: '/work/sleep-health-and-lifestyle-dataset'
+      path: '/work/sleep-health-and-lifestyle-dataset'
+      fullPath: '/work/sleep-health-and-lifestyle-dataset'
+      preLoaderRoute: typeof WorkSleepHealthAndLifestyleDatasetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/tabular-synthesis-llm': {
+      id: '/work/tabular-synthesis-llm'
+      path: '/work/tabular-synthesis-llm'
+      fullPath: '/work/tabular-synthesis-llm'
+      preLoaderRoute: typeof WorkTabularSynthesisLlmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +202,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProjectsRoute: ProjectsRoute,
   WorkContainerportIdRoute: WorkContainerportIdRoute,
+  WorkCreditGapForecasterRoute: WorkCreditGapForecasterRoute,
+  WorkDashboardAnalisisUniversitasLpdpRoute:
+    WorkDashboardAnalisisUniversitasLpdpRoute,
+  WorkMaeHybridImputationStudyRoute: WorkMaeHybridImputationStudyRoute,
+  WorkSleepHealthAndLifestyleDatasetRoute:
+    WorkSleepHealthAndLifestyleDatasetRoute,
+  WorkTabularSynthesisLlmRoute: WorkTabularSynthesisLlmRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

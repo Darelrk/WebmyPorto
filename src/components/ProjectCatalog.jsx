@@ -25,6 +25,11 @@ function formatDate(iso) {
 // Internal deep-dive route per repo (case-study pages). Falls back to GitHub.
 const CASE_STUDY = {
   'ContainerPort-ID': '/work/containerport-id',
+  'credit-gap-forecaster': '/work/credit-gap-forecaster',
+  'Tabular-Synthesis-LLM': '/work/tabular-synthesis-llm',
+  'mae-hybrid-imputation-study': '/work/mae-hybrid-imputation-study',
+  'Dashboard-Analisis-Universitas-LPDP': '/work/dashboard-analisis-universitas-lpdp',
+  'Sleep-Health-and-Lifestyle-Dataset': '/work/sleep-health-and-lifestyle-dataset',
 }
 
 function RepoCard({ repo }) {

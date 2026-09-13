@@ -55,7 +55,15 @@ export default function Projects({ data = [] }) {
         {rest.length > 0 && (
           <div className="proj-list mt-10 divide-y divide-line/80 border-y border-line/80">
             {rest.map((project, index) => {
-              const internal = project.title === 'ContainerPort-ID' ? '/work/containerport-id' : null
+              const WORK_ROUTES = {
+                'ContainerPort-ID': '/work/containerport-id',
+                'Credit-to-GDP Gap Forecasting': '/work/credit-gap-forecaster',
+                'Tabular Synthesis LLM': '/work/tabular-synthesis-llm',
+                'MAE Hybrid Imputation Study': '/work/mae-hybrid-imputation-study',
+                'Global University Opportunity Analysis Dashboard (LPDP List)': '/work/dashboard-analisis-universitas-lpdp',
+                'Sleep Health Analysis': '/work/sleep-health-and-lifestyle-dataset',
+              }
+              const internal = WORK_ROUTES[project.title] ?? null
               return (
               <SpotlightCard
                 key={project.id}
