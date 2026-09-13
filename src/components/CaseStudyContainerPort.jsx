@@ -99,6 +99,23 @@ export default function CaseStudyContainerPort() {
             </div>
           </header>
 
+          {/* Hero image: subjek yang dimodelkan (sistem pelabuhan kontainer) */}
+          <figure className="mt-12 overflow-hidden rounded-2xl border border-line/80">
+            <img
+              src="/port-hero.webp"
+              alt="Aerial view of a container ship berthed at an Indonesian port terminal, gantry cranes working the container stacks"
+              width={1440}
+              height={960}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[3/2] w-full object-cover"
+            />
+            <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-line/80 bg-canvas px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+              <span>The system this page models</span>
+              <span>container calls · tonnage · disruption radar</span>
+            </figcaption>
+          </figure>
+
           {/* Problem & data */}
           <section className="border-y border-line/80 bg-white/30 dark:bg-white/[0.02]">
             <div className="container-shell grid gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:gap-16">
