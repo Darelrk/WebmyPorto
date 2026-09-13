@@ -94,7 +94,7 @@ export default function Hero({ data }) {
   return (
     <section id="home" ref={ref} onMouseMove={onHeroMove} className="relative overflow-hidden border-b border-line/80">
       <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 [body:hover_&]:opacity-100" style={{ background: 'radial-gradient(600px circle at var(--mx,-100%) var(--my,-100%), rgba(232,93,74,0.12), transparent 60%)' }} />
-      <div className="container-shell grid min-h-[calc(100dvh-72px)] items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-20 lg:py-16">
+      <div className="container-shell grid items-center gap-10 py-10 sm:min-h-[calc(100dvh-72px)] sm:gap-12 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-20">
         <div className="hero-left">
           <TextReveal as="h1" text={data.title}
             className="hero-title max-w-3xl text-[clamp(3rem,5vw,5.5rem)] font-bold leading-[0.94] tracking-[-0.085em] text-ink" />
@@ -135,8 +135,8 @@ export default function Hero({ data }) {
           </div>
         </div>
 
-        <div className="relative min-h-[430px] sm:min-h-[560px]">
-          <div className="hero-image-wrap relative h-[430px] overflow-hidden rounded-[28px] bg-mist sm:absolute sm:inset-x-8 sm:top-12 sm:bottom-0 sm:h-auto">
+        <div className="relative sm:min-h-[560px]">
+          <div className="hero-image-wrap relative aspect-[4/3] overflow-hidden rounded-[28px] bg-mist sm:absolute sm:inset-x-8 sm:top-12 sm:bottom-0 sm:aspect-auto sm:h-auto">
             <img
               src="/profile_circle.webp"
               alt="Portrait of Darrell Rafif Kenzie"

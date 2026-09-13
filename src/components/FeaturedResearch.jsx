@@ -124,7 +124,7 @@ export default function FeaturedResearch({ data }) {
 
   return (
     <section id="research" className="border-b border-line/80">
-      <div className="container-shell py-24 sm:py-32">
+      <div className="container-shell py-12 sm:py-32">
         <div ref={ref} className="overflow-hidden rounded-[28px] bg-ink p-7 text-canvas sm:p-10 lg:p-14">
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <div>

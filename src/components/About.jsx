@@ -28,7 +28,7 @@ export default function About({ data, expertise = [] }) {
 
   return (
     <section id="about" ref={ref} className="border-b border-line/80">
-      <div className="container-shell grid gap-12 py-24 sm:py-32 lg:grid-cols-[0.6fr_1.4fr] lg:gap-24">
+      <div className="container-shell grid gap-12 py-12 sm:py-32 lg:grid-cols-[0.6fr_1.4fr] lg:gap-24">
         <div>
           <p className="about-eyebrow text-xs font-bold text-coral">{data.label ?? 'About'}</p>
           <p className="mt-6 max-w-[14rem] text-sm leading-6 text-muted">{data.supportLine}</p>

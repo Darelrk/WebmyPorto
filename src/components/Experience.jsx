@@ -19,7 +19,7 @@ export default function Experience({ data = [] }) {
 
   return (
     <section id="experience" ref={ref} className="border-b border-line/80">
-      <div className="container-shell py-24 sm:py-32">
+      <div className="container-shell py-12 sm:py-32">
         <div className="grid gap-8 lg:grid-cols-[0.6fr_1.4fr] lg:gap-24">
           <div>
             <p className="exp-label text-xs font-bold text-coral">Experience</p>

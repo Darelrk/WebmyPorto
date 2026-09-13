@@ -203,7 +203,7 @@ export default function Expertise({ data = [], softSkills = [] }) {
 
   return (
     <section id="expertise" ref={ref} className="border-b border-line/80">
-      <div className="container-shell py-24 sm:py-32">
+      <div className="container-shell py-12 sm:py-32">
         <div className="max-w-3xl">
           <TextReveal as="h2" text="Tools that turn questions into useful systems." className="text-[clamp(2.7rem,5vw,4.7rem)] font-bold leading-[0.96] tracking-[-0.075em]" />
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">A practical toolkit for finding signal, testing ideas, and making the result useful to the people who need it.</p>

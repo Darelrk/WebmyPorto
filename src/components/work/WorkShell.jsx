@@ -32,9 +32,9 @@ export default function WorkShell({ meta }) {
         <Navbar data={content.navbar} anchorBase="/" />
 
         <main>
-          <header className="container-shell pb-14 pt-14 sm:pt-20">
-            <nav aria-label="Breadcrumb" className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-              <a href="/projects" className="text-muted underline-offset-4 hover:text-coral hover:underline focus-visible:outline-none">
+          <header className="container-shell pb-10 pt-10 sm:pb-14 sm:pt-20">
+            <nav aria-label="Breadcrumb" className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted py-1">
+              <a href="/projects" className="inline-flex h-11 items-center text-muted underline-offset-4 hover:text-coral hover:underline focus-visible:outline-none">
                 Project catalog
               </a>
               <span aria-hidden="true"> / </span>
@@ -55,7 +55,7 @@ export default function WorkShell({ meta }) {
                     href={meta.repo}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-canvas transition-transform hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-canvas transition-transform hover:-translate-y-0.5"
                   >
                     Open the repository <ArrowUpRight size={15} strokeWidth={2} />
                   </a>
@@ -74,7 +74,7 @@ export default function WorkShell({ meta }) {
             </div>
           </header>
 
-          <div className="container-shell pb-20">
+          <div className="container-shell pb-10 sm:pb-20">
             <WorkBody blocks={meta.blocks} dkey={meta.key} />
           </div>
         </main>

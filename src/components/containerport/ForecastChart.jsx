@@ -91,7 +91,7 @@ export default function ForecastChart() {
             role="tab"
             aria-selected={p === port}
             onClick={() => { setPort(p); setHover(null) }}
-            className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none ${
+            className={`rounded-full border px-4 py-3.5 text-xs font-semibold transition-colors focus-visible:outline-none ${
               p === port
                 ? 'border-ink bg-ink text-canvas'
                 : 'border-line/80 text-muted hover:border-ink/40 hover:text-ink'
@@ -108,7 +108,7 @@ export default function ForecastChart() {
             role="tab"
             aria-selected={m.key === model}
             onClick={() => setModel(m.key)}
-            className={`rounded-md border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none ${
+          className={`rounded-md border px-3.5 py-3.5 font-mono text-[11px] transition-colors focus-visible:outline-none ${
               m.key === model
                 ? 'border-coral bg-coral/10 text-coral'
                 : 'border-line/80 text-muted hover:border-coral/40 hover:text-ink'
@@ -123,7 +123,7 @@ export default function ForecastChart() {
       </div>
 
       <figure className="mt-6" aria-label={`Actual vs ${model} forecast for ${port}`}>
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full touch-none" role="img">
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img">
           {[0.25, 0.5, 0.75].map((f) => (
             <line key={f} x1={PAD.l} x2={W - PAD.r} y1={PAD.t + ih * f} y2={PAD.t + ih * f}
               stroke="currentColor" strokeWidth="0.5" className="text-line" />
@@ -149,7 +149,9 @@ export default function ForecastChart() {
           {weeks.map((yw, i) => (
             <rect key={yw} x={x(i) - iw / (2 * n)} y={PAD.t} width={iw / n} height={ih}
               fill="transparent" className="cursor-crosshair"
-              onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} />
+              onPointerMove={(e) => { if (e.pointerType === 'touch') e.currentTarget.releasePointerCapture?.(e.pointerId); setHover(i) }}
+              onPointerDown={() => setHover(i)}
+              onPointerLeave={() => setHover(null)} />
           ))}
           {hover != null && pred[hover] != null && (
             <g pointerEvents="none">
@@ -170,7 +172,7 @@ export default function ForecastChart() {
               wk {hoveredPoint.week}: actual {hoveredPoint.actual} · forecast {Math.round(hoveredPoint.pred)}
             </span>
           ) : (
-            <span className="text-muted/80">hover the chart to inspect a week</span>
+            <span className="text-muted/80">tap or hover the chart to inspect a week</span>
           )}
         </figcaption>
       </figure>

@@ -36,16 +36,11 @@ export default function ModelLadder() {
                   <span className="ml-2 rounded-md bg-coral/10 px-1.5 py-0.5 font-mono text-[10px] font-bold text-coral">best</span>
                 )}
               </th>
-              <td className="py-3 pr-2">
-                <div className="flex items-center gap-2">
-                  <span className="w-12 font-mono text-sm tabular-nums">{r.smape}%</span>
-                  <span className="h-2 rounded-sm bg-line" style={{ width: `${(r.smape / maxSmape) * 100}%` }} aria-hidden="true" />
+              <td className="w-32 py-3 pr-2 sm:w-auto">
+                <div className="font-mono text-sm tabular-nums">{r.smape}%</div>
+                <div className="mt-1.5 h-2 w-24 rounded-sm bg-line">
+                  <div className="h-2 rounded-sm bg-ink/60" style={{ width: `${(r.smape / maxSmape) * 100}%` }} aria-hidden="true" />
                 </div>
-              </td>
-              <td className="py-3 font-mono text-sm tabular-nums">
-                {r.skill === 0
-                  ? <span className="text-muted">baseline</span>
-                  : <span className={r.skill > 0 ? 'text-coral' : 'text-muted'}>{r.skill > 0 ? '+' : ''}{r.skill}%</span>}
               </td>
             </tr>
           ))}

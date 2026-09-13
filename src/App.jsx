@@ -15,7 +15,7 @@ const Footer = lazy(() => import('./components/Footer'))
 
 function SectionSkeleton() {
   return (
-    <div className="container-shell py-24" aria-label="Loading section" role="status">
+    <div className="container-shell py-12 sm:py-16" aria-label="Loading section" role="status">
       <div className="h-3 w-24 animate-pulse rounded bg-line/70" />
       <div className="mt-5 h-12 max-w-xl animate-pulse rounded bg-line/70" />
       <div className="mt-4 h-4 max-w-2xl animate-pulse rounded bg-line/50" />

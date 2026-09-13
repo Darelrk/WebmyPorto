@@ -74,7 +74,7 @@ export default function Navbar({ data, anchorBase = '' }) {
             {data.cta}
           </MagneticButton>
         </div>
-        <button type="button" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink lg:hidden"
+        <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink lg:hidden"
           onClick={() => setMobileMenuOpen((o) => !o)}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
@@ -92,14 +92,14 @@ export default function Navbar({ data, anchorBase = '' }) {
                   className={
                     isRoute
                       ? "my-1 inline-flex w-fit items-center rounded-full bg-coral px-5 py-2 text-sm font-bold text-canvas"
-                      : "border-b border-line/70 py-3 text-base text-ink"
+                      : "border-b border-line/70 py-3.5 text-base text-ink"
                   }>
                   {link.name}
                 </a>
               )
             })}
             <div className="flex items-center justify-between pt-4">
-              <button type="button" onClick={toggleTheme} className="flex items-center gap-2 text-sm text-muted">
+              <button type="button" onClick={toggleTheme} className="inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm text-muted transition hover:text-ink">
                 {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
                 {theme === 'dark' ? 'Light mode' : 'Dark mode'}
               </button>

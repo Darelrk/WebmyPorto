@@ -111,7 +111,7 @@ export default function ProjectCatalog() {
 
       <div className="relative z-10">
         <Navbar data={content.navbar} anchorBase="/" />
-        <main className="container-shell py-24 sm:py-32">
+        <main className="container-shell py-12 sm:py-32">
           <div className="cat-header max-w-3xl">
             <h1 className="text-[clamp(2.8rem,5.4vw,5rem)] font-bold leading-[0.95] tracking-[-0.075em]">
               Project catalog
@@ -127,7 +127,7 @@ export default function ProjectCatalog() {
               : repos.map((repo) => <RepoCard key={repo.name} repo={repo} />)}
           </div>
 
-          <a href="/" className="mt-16 inline-flex items-center gap-2 text-sm font-semibold text-coral transition-transform hover:-translate-x-0.5">
+          <a href="/" className="mt-16 inline-flex h-11 items-center gap-2 rounded-full text-sm font-semibold text-coral transition-transform hover:-translate-x-0.5">
             <ArrowLeft size={16} strokeWidth={1.8} />
             Back to portfolio
           </a>

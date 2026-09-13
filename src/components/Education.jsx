@@ -24,7 +24,7 @@ export default function Education({ educationData = [], certificationData = [] }
 
   return (
     <section id="education" ref={ref} className="border-b border-line/80">
-      <div className="container-shell py-24 sm:py-32">
+      <div className="container-shell py-12 sm:py-32">
         <div className="flex flex-col justify-between gap-5 border-b border-line pb-8 sm:flex-row sm:items-end">
           <div>
             <p className="edu-label text-xs font-bold text-coral">Education</p>

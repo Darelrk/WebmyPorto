@@ -23,7 +23,7 @@ export default function Projects({ data = [] }) {
 
   return (
     <section id="projects" ref={ref} className="border-b border-line/80">
-      <div className="container-shell py-24 sm:py-32">
+      <div className="container-shell py-12 sm:py-32">
         <div className="proj-header max-w-3xl">
           <p className="text-xs font-bold text-coral">Selected work</p>
           <TextReveal as="h2" text="Projects that make data useful." className="mt-4 text-[clamp(2.8rem,5.4vw,5rem)] font-bold leading-[0.95] tracking-[-0.075em]" />

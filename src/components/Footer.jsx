@@ -51,7 +51,7 @@ export default function Footer({ data = {} }) {
                 target={disabled ? undefined : '_blank'}
                 rel={disabled ? undefined : 'noreferrer'}
                 aria-disabled={disabled}
-                className={`social-link inline-flex items-center gap-2 text-sm transition ${disabled ? 'cursor-not-allowed text-muted/50' : 'text-ink hover:text-coral'}`}
+                className={`social-link inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm transition ${disabled ? 'cursor-not-allowed text-muted/50' : 'text-ink hover:text-coral'}`}
               >
                 <Icon size={16} strokeWidth={1.7} />
                 {social.name}

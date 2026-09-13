@@ -46,7 +46,7 @@ export default function CaseStudyContainerPort() {
           {/* Header */}
           <header className="container-shell pb-16 pt-14 sm:pt-20">
             <nav aria-label="Breadcrumb" className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-              <a href="/projects" className="text-muted underline-offset-4 hover:text-coral hover:underline focus-visible:outline-none">
+              <a href="/projects" className="inline-flex h-11 items-center text-muted underline-offset-4 hover:text-coral hover:underline focus-visible:outline-none">
                 Project catalog
               </a>
               <span aria-hidden="true"> / </span>
@@ -72,7 +72,7 @@ export default function CaseStudyContainerPort() {
                     href="https://github.com/Darelrk/ContainerPort-ID"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-canvas transition-transform hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-canvas transition-transform hover:-translate-y-0.5"
                   >
                     Open the repository <ArrowUpRight size={15} strokeWidth={2} />
                   </a>
@@ -80,7 +80,7 @@ export default function CaseStudyContainerPort() {
                     href="https://github.com/Darelrk/ContainerPort-ID/blob/main/reports/case_study.md"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-coral hover:text-coral"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-line px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-coral hover:text-coral"
                   >
                     Read the case study <ArrowUpRight size={15} strokeWidth={2} />
                   </a>
@@ -118,7 +118,7 @@ export default function CaseStudyContainerPort() {
 
           {/* Problem & data */}
           <section className="border-y border-line/80 bg-white/30 dark:bg-white/[0.02]">
-            <div className="container-shell grid gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:gap-16">
+            <div className="container-shell grid gap-10 py-10 sm:py-20 lg:grid-cols-2 lg:gap-16">
               <div className="cs-reveal">
                 <p className="eyebrow">The problem</p>
                 <h2 className="mt-4 text-3xl font-bold tracking-[-0.05em] sm:text-4xl">Terminals plan week-to-week, blind.</h2>
@@ -143,7 +143,7 @@ export default function CaseStudyContainerPort() {
           </section>
 
           {/* Forecast explorer */}
-          <section aria-labelledby="fc-heading" className="container-shell py-16 sm:py-20">
+          <section aria-labelledby="fc-heading" className="container-shell py-10 sm:py-20">
             <div className="cs-reveal max-w-2xl">
               <p className="eyebrow">Live result explorer</p>
               <h2 id="fc-heading" className="mt-4 text-3xl font-bold tracking-[-0.05em] sm:text-4xl">
@@ -182,7 +182,7 @@ export default function CaseStudyContainerPort() {
 
           {/* Anomaly timeline */}
           <section aria-labelledby="an-heading" className="border-t border-line/80 bg-white/30 dark:bg-white/[0.02]">
-            <div className="container-shell py-16 sm:py-20">
+            <div className="container-shell py-10 sm:py-20">
               <div className="cs-reveal max-w-2xl">
                 <p className="eyebrow">Early warning</p>
                 <h2 id="an-heading" className="mt-4 text-3xl font-bold tracking-[-0.05em] sm:text-4xl">
@@ -202,7 +202,7 @@ export default function CaseStudyContainerPort() {
           </section>
 
           {/* Method & stack */}
-          <section aria-labelledby="mth-heading" className="container-shell py-16 sm:py-20">
+          <section aria-labelledby="mth-heading" className="container-shell py-10 sm:py-20">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
               <div className="cs-reveal">
                 <p className="eyebrow">Method</p>
@@ -247,7 +247,7 @@ export default function CaseStudyContainerPort() {
 
           {/* Footer CTA */}
           <section className="border-t border-line/80">
-            <div className="container-shell flex flex-col items-start gap-6 py-14 sm:flex-row sm:items-center sm:justify-between">
+            <div className="container-shell flex flex-col items-start gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
               <p className="max-w-md text-lg font-semibold leading-7 tracking-[-0.02em]">
                 Want the full methodology? The repo has every line of it.
               </p>

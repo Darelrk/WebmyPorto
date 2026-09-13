@@ -42,12 +42,12 @@ export default function AnomalyTimeline() {
 
       <ol className="mt-6 divide-y divide-line/60">
         {events.map((e) => (
-          <li key={`${e.port}-${e.yw}`} className="an-row flex items-center gap-4 py-3">
+          <li key={`${e.port}-${e.yw}`} className="an-row flex flex-wrap items-center gap-x-4 gap-y-1 py-3">
             <span className="w-24 shrink-0 font-mono text-xs tabular-nums text-muted">{ywToLabel(e.yw)}</span>
             <span className={`rounded-md px-2 py-0.5 font-mono text-[10px] font-bold uppercase ${DIR_STYLE[e.dir].cls}`}>
               {DIR_STYLE[e.dir].label}
             </span>
-            <span className="min-w-0 flex-1">
+            <span className="order-2 min-w-0 flex-1 pt-1 sm:order-none sm:pt-0">
               <span className="text-sm font-semibold">{e.label}</span>
               <span className="ml-2 text-xs text-muted">{e.port}</span>
             </span>
