@@ -16,11 +16,18 @@ export const WORK_META = {
       { value: '2', unit: 'buoy classes', label: 'red and green targets for gate guidance' },
       { value: '10 Hz', unit: 'simulated telemetry', label: 'offline demo feed, not a measured vessel update rate' },
     ],
-    image: {
-      src: '/asv-dashboard.webp',
-      alt: 'Screenshot of the ASV web ground control station from the project repository',
-      caption: 'Dashboard screenshot from the project repository; this is not a live vessel feed.',
-    },
+    images: [
+      {
+        src: '/asv-vessel.jpeg', width: 1500, height: 844,
+        alt: 'White model vessel on the water between green buoys',
+        caption: 'Vessel photo from the project repository (2.jpeg); not evidence of a completed autonomous course run.',
+      },
+      {
+        src: '/asv-dashboard.webp', width: 1505, height: 800,
+        alt: 'Screenshot of the ASV web ground control station from the project repository',
+        caption: 'Dashboard screenshot from the project repository; this is not a live vessel feed.',
+      },
+    ],
     blocks: [
       { type: 'method-steps', title: 'From detection to guidance', note: 'The implemented software path, not a claim of completed on-water autonomy.', steps: [
         { n: '01', t: 'Detect', d: 'YOLO26n identifies red and green buoys in camera frames.' },

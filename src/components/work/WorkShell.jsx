@@ -75,11 +75,15 @@ export default function WorkShell({ meta }) {
           </header>
 
           <div className="container-shell pb-10 sm:pb-20">
-            {meta.image && (
-              <figure className="overflow-hidden rounded-2xl border border-line/80 bg-white/40 dark:bg-white/[0.03]">
-                <img src={meta.image.src} alt={meta.image.alt} width="1505" height="800" loading="lazy" className="h-auto w-full" />
-                <figcaption className="border-t border-line/80 px-5 py-3 text-xs leading-5 text-muted">{meta.image.caption}</figcaption>
-              </figure>
+            {meta.images && (
+              <div className="space-y-6">
+                {meta.images.map((image) => (
+                  <figure key={image.src} className="overflow-hidden rounded-2xl border border-line/80 bg-white/40 dark:bg-white/[0.03]">
+                    <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" className="h-auto w-full" />
+                    <figcaption className="border-t border-line/80 px-5 py-3 text-xs leading-5 text-muted">{image.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
             )}
             <WorkBody blocks={meta.blocks} dkey={meta.key} />
           </div>
