@@ -127,3 +127,7 @@ No test framework in repo. Verification (manual, per repo convention):
 - No GitHub token / serverless proxy (60 req/hr anonymous is fine for a portfolio).
 - No README rendering, no repo preview images.
 - Homepage section Projects stays as-is (no data dedup with catalog).
+
+## Subsequent ASV integration
+
+The catalog now curates `autonomous-surface-vessel` as a seventh repo with a per-repo fallback. Its card and a small KKI 2026 row beneath the existing LPDP featured project link to `/work/autonomous-surface-vessel`. The case study uses a local dashboard screenshot and labels the model metric and telemetry demo as repository artifacts; it does not claim a verified on-water run.

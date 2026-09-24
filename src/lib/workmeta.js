@@ -5,6 +5,36 @@ export default casestudies
 // Registry per project: route, meta, blocks definition.
 // Semua angka di casestudies.json berasal dari repo masing-masing (R-17).
 export const WORK_META = {
+  'autonomous-surface-vessel': {
+    slug: 'autonomous-surface-vessel',
+    repo: 'https://github.com/Darelrk/autonomous-surface-vessel',
+    eyebrow: 'KKI 2026 · Computer vision · Autonomous systems',
+    title: 'An ASV software stack from perception to ground control.',
+    intro: 'A KKI 2026 autonomous-surface-vessel project combining buoy detection, visual gate guidance, a guarded MAVLink control path, and a web ground control station. The local demo uses simulated telemetry; physical course performance is not established here.',
+    stats: [
+      { value: '0.983', unit: 'reported mAP50(B)', label: 'repo test artifact for buoy detection; not independently reproduced' },
+      { value: '2', unit: 'buoy classes', label: 'red and green targets for gate guidance' },
+      { value: '10 Hz', unit: 'simulated telemetry', label: 'offline demo feed, not a measured vessel update rate' },
+    ],
+    image: {
+      src: '/asv-dashboard.webp',
+      alt: 'Screenshot of the ASV web ground control station from the project repository',
+      caption: 'Dashboard screenshot from the project repository; this is not a live vessel feed.',
+    },
+    blocks: [
+      { type: 'method-steps', title: 'From detection to guidance', note: 'The implemented software path, not a claim of completed on-water autonomy.', steps: [
+        { n: '01', t: 'Detect', d: 'YOLO26n identifies red and green buoys in camera frames.' },
+        { n: '02', t: 'Guide', d: 'Visual servoing turns the target gate position into a steering correction.' },
+        { n: '03', t: 'Connect', d: 'The backend links telemetry and guarded control commands to a MAVLink interface.' },
+        { n: '04', t: 'Monitor', d: 'A web ground control station shows the mission and telemetry; the offline demo can run with simulated data.' },
+      ]},
+      { type: 'why-list', title: 'Evidence and limits', items: [
+        'The repository records mAP50(B) = 0.9834 on its buoy-detection test split. It is a stored model metric, not an independent field result.',
+        'The dashboard screenshot and simulated telemetry demonstrate the interface without proving operation on a physical vessel.',
+        'MAVLink and actuator-control paths are present in code, but a successful on-water KKI course run has not been verified.',
+      ]},
+    ],
+  },
   'credit-gap-forecaster': {
     slug: 'credit-gap-forecaster',
     repo: 'https://github.com/Darelrk/credit-gap-forecaster',

@@ -153,6 +153,13 @@
       "link": "https://github.com/Darelrk/Dashboard-Analisis-Universitas-LPDP"
     },
     {
+      "id": 7,
+      "title": "Autonomous Surface Vessel",
+      "description": "KKI 2026 software stack for buoy detection, visual gate guidance, and a web ground control station. The dashboard can be explored with simulated telemetry.",
+      "tags": ["Computer Vision", "Robotics", "Ground Control"],
+      "link": "https://github.com/Darelrk/autonomous-surface-vessel"
+    },
+    {
       "id": 2,
       "title": "Sleep Health Analysis",
       "description": "Analyzes how lifestyle factors, health conditions, and stress relate to sleep quality, with data cleaning, exploration, and an interactive Google Looker Studio dashboard.",

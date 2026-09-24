@@ -24,6 +24,7 @@ function formatDate(iso) {
 
 // Internal deep-dive route per repo (case-study pages). Falls back to GitHub.
 const CASE_STUDY = {
+  'autonomous-surface-vessel': '/work/autonomous-surface-vessel',
   'ContainerPort-ID': '/work/containerport-id',
   'credit-gap-forecaster': '/work/credit-gap-forecaster',
   'Tabular-Synthesis-LLM': '/work/tabular-synthesis-llm',

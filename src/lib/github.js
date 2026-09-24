@@ -5,6 +5,7 @@ const GITHUB_USER = 'Darelrk'
 
 // Curated catalog. Update together with src/data/github-fallback.json.
 const CATALOG_REPOS = [
+  'autonomous-surface-vessel',
   'credit-gap-forecaster',
   'Tabular-Synthesis-LLM',
   'mae-hybrid-imputation-study',

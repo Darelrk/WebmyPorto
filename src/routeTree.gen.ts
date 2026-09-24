@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as WorkAutonomousSurfaceVesselRouteImport } from './routes/work/autonomous-surface-vessel'
 import { Route as WorkContainerportIdRouteImport } from './routes/work/containerport-id'
 import { Route as WorkCreditGapForecasterRouteImport } from './routes/work/credit-gap-forecaster'
 import { Route as WorkDashboardAnalisisUniversitasLpdpRouteImport } from './routes/work/dashboard-analisis-universitas-lpdp'
@@ -28,6 +29,12 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkAutonomousSurfaceVesselRoute =
+  WorkAutonomousSurfaceVesselRouteImport.update({
+    id: '/work/autonomous-surface-vessel',
+    path: '/work/autonomous-surface-vessel',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const WorkContainerportIdRoute = WorkContainerportIdRouteImport.update({
   id: '/work/containerport-id',
   path: '/work/containerport-id',
@@ -65,6 +72,7 @@ const WorkTabularSynthesisLlmRoute = WorkTabularSynthesisLlmRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/projects': typeof ProjectsRoute
+  '/work/autonomous-surface-vessel': typeof WorkAutonomousSurfaceVesselRoute
   '/work/containerport-id': typeof WorkContainerportIdRoute
   '/work/credit-gap-forecaster': typeof WorkCreditGapForecasterRoute
   '/work/dashboard-analisis-universitas-lpdp': typeof WorkDashboardAnalisisUniversitasLpdpRoute
@@ -75,6 +83,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/projects': typeof ProjectsRoute
+  '/work/autonomous-surface-vessel': typeof WorkAutonomousSurfaceVesselRoute
   '/work/containerport-id': typeof WorkContainerportIdRoute
   '/work/credit-gap-forecaster': typeof WorkCreditGapForecasterRoute
   '/work/dashboard-analisis-universitas-lpdp': typeof WorkDashboardAnalisisUniversitasLpdpRoute
@@ -86,6 +95,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/projects': typeof ProjectsRoute
+  '/work/autonomous-surface-vessel': typeof WorkAutonomousSurfaceVesselRoute
   '/work/containerport-id': typeof WorkContainerportIdRoute
   '/work/credit-gap-forecaster': typeof WorkCreditGapForecasterRoute
   '/work/dashboard-analisis-universitas-lpdp': typeof WorkDashboardAnalisisUniversitasLpdpRoute
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/projects'
+    | '/work/autonomous-surface-vessel'
     | '/work/containerport-id'
     | '/work/credit-gap-forecaster'
     | '/work/dashboard-analisis-universitas-lpdp'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/projects'
+    | '/work/autonomous-surface-vessel'
     | '/work/containerport-id'
     | '/work/credit-gap-forecaster'
     | '/work/dashboard-analisis-universitas-lpdp'
@@ -118,6 +130,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/projects'
+    | '/work/autonomous-surface-vessel'
     | '/work/containerport-id'
     | '/work/credit-gap-forecaster'
     | '/work/dashboard-analisis-universitas-lpdp'
@@ -129,6 +142,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProjectsRoute: typeof ProjectsRoute
+  WorkAutonomousSurfaceVesselRoute: typeof WorkAutonomousSurfaceVesselRoute
   WorkContainerportIdRoute: typeof WorkContainerportIdRoute
   WorkCreditGapForecasterRoute: typeof WorkCreditGapForecasterRoute
   WorkDashboardAnalisisUniversitasLpdpRoute: typeof WorkDashboardAnalisisUniversitasLpdpRoute
@@ -151,6 +165,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/autonomous-surface-vessel': {
+      id: '/work/autonomous-surface-vessel'
+      path: '/work/autonomous-surface-vessel'
+      fullPath: '/work/autonomous-surface-vessel'
+      preLoaderRoute: typeof WorkAutonomousSurfaceVesselRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/work/containerport-id': {
@@ -201,6 +222,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProjectsRoute: ProjectsRoute,
+  WorkAutonomousSurfaceVesselRoute: WorkAutonomousSurfaceVesselRoute,
   WorkContainerportIdRoute: WorkContainerportIdRoute,
   WorkCreditGapForecasterRoute: WorkCreditGapForecasterRoute,
   WorkDashboardAnalisisUniversitasLpdpRoute:

@@ -1,5 +1,14 @@
 [
   {
+    "name": "autonomous-surface-vessel",
+    "description": "Edge AI Perception, Visual Servoing Guidance, and Web Ground Control Station for Autonomous Surface Vessels",
+    "language": "TypeScript",
+    "stars": 0,
+    "updatedAt": "2026-09-24",
+    "topics": [],
+    "url": "https://github.com/Darelrk/autonomous-surface-vessel"
+  },
+  {
     "name": "credit-gap-forecaster",
     "description": "Predictive Early Warning System for Credit-to-GDP Gap using hybrid LSTM, XGBoost, and ARIMA models.",
     "language": "Python",

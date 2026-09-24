@@ -56,6 +56,7 @@ export default function Projects({ data = [] }) {
           <div className="proj-list mt-10 divide-y divide-line/80 border-y border-line/80">
             {rest.map((project, index) => {
               const WORK_ROUTES = {
+                'Autonomous Surface Vessel': '/work/autonomous-surface-vessel',
                 'ContainerPort-ID': '/work/containerport-id',
                 'Credit-to-GDP Gap Forecasting': '/work/credit-gap-forecaster',
                 'Tabular Synthesis LLM': '/work/tabular-synthesis-llm',
@@ -63,6 +64,7 @@ export default function Projects({ data = [] }) {
                 'Global University Opportunity Analysis Dashboard (LPDP List)': '/work/dashboard-analisis-universitas-lpdp',
                 'Sleep Health Analysis': '/work/sleep-health-and-lifestyle-dataset',
               }
+              const isKki = project.title === 'Autonomous Surface Vessel'
               const internal = WORK_ROUTES[project.title] ?? null
               return (
               <SpotlightCard
@@ -71,10 +73,11 @@ export default function Projects({ data = [] }) {
                 href={internal ?? project.link}
                 target={internal ? undefined : '_blank'}
                 rel="noreferrer"
-                className="proj-item group grid gap-4 rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:bg-canvas/60 hover:text-coral sm:grid-cols-[0.15fr_0.85fr_auto] sm:items-center sm:gap-7"
+                className={'proj-item group grid gap-4 rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:bg-canvas/60 hover:text-coral sm:grid-cols-[0.15fr_0.85fr_auto] sm:items-center sm:gap-7 ' + (isKki ? 'bg-coral/5 ring-1 ring-inset ring-coral/25' : '')}
               >
                 <span className="font-mono text-xs text-muted">0{index + 2}</span>
                 <div>
+                  {isKki && <span className="mb-2 inline-flex rounded-full border border-coral/30 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-coral">KKI 2026 · ASV</span>}
                   <h3 className="text-xl font-bold tracking-[-0.04em]">{project.title}</h3>
                   <p className="mt-2 max-w-2xl text-sm leading-6 text-muted group-hover:text-muted">{project.description}</p>
                   {(project.tags?.length ?? 0) > 0 && (
