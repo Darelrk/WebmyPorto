@@ -1,7 +1,7 @@
 # Koreografi Scroll Velocity, Overlap, dan Parallax
 
 - **Tanggal:** 2026-09-27
-- **Status:** Menunggu tinjauan spec pengguna sebelum implementasi
+- **Status:** Disetujui pengguna; implementasi belum dimulai
 - **Cakupan:** Beranda, katalog proyek, dan halaman studi kasus
 - **Stack motion:** GSAP + ScrollTrigger yang sudah terpasang
 
@@ -18,7 +18,7 @@ Membaca ini sebagai portfolio data science personal untuk recruiter dan hiring m
 Tujuan: memperkaya animasi scroll di seluruh situs dengan respons velocity dan kedalaman yang terarah, sambil mempertahankan isi, urutan baca, tema, dan navigasi yang sudah ada.
 
 Batasan:
-- Scroll tetap native. Tidak ada scroll hijack atau section pin.
+- Pertahankan Lenis smooth-scroll yang sudah aktif di desktop. Tidak ada scroll hijack tambahan atau section pin; mobile dan reduced-motion tetap memakai native scroll seperti sekarang.
 - Tidak menambahkan dependency, teks, aset, atau section baru.
 - Tidak mengubah isi halaman, palet, tema, maupun tujuan tautan.
 - Teks, angka metrik, tabel, dan kontrol tidak mendapat parallax.
@@ -36,7 +36,7 @@ Setiap permukaan memakai timing yang berbeda sesuai struktur aktualnya. Katalog 
 
 ## 4. Model implementasi
 
-- Pertahankan `useGSAP` dan `ScrollTrigger` yang sudah dipakai komponen.
+- Pertahankan `useGSAP` dan `ScrollTrigger` yang sudah dipakai komponen. Reuse bridge Lenis ke ScrollTrigger dan ticker GSAP yang sudah ada di `src/main.jsx`; jangan menambah global listener atau controller baru.
 - Buat timeline lokal di `Hero.jsx`, `FeaturedResearch.jsx`, `Projects.jsx`, `ProjectCatalog.jsx`, `WorkShell.jsx`, dan `WorkBody.jsx`; jangan menambah pengelola scroll global.
 - Baca velocity dari update ScrollTrigger yang sudah aktif pada elemen sasaran. Batasi kontribusinya ke transform kecil (maksimal 24px), lalu redakan ke posisi dasar saat scroll melambat atau berhenti. Tidak ada transform kumulatif.
 - Gunakan transform/opacity, bukan perubahan ukuran atau posisi layout. Overlap desktop hanya berlaku di transisi riset ke proyek pada beranda.
@@ -47,12 +47,12 @@ Setiap permukaan memakai timing yang berbeda sesuai struktur aktualnya. Katalog 
 
 - Di viewport di bawah 768px, nonaktifkan velocity, parallax, dan overlap dinamis. Konten kembali ke alur vertikal biasa tanpa clipping atau perubahan urutan.
 - Saat `prefers-reduced-motion: reduce`, jangan buat trigger gerak baru; semua konten langsung berada pada keadaan akhir yang terlihat. Tampilkan layout tanpa overlap dinamis.
-- Tidak ada teks yang disembunyikan menunggu animasi. Tautan anchor, navigasi keyboard, dan scroll sentuh tetap menggunakan perilaku browser.
+- Desktop mempertahankan Lenis yang sudah ada. Scroll native di mobile/reduced-motion, navigasi anchor, keyboard, dan touch tetap berfungsi.
 - Kedua tema tetap memakai warna dan kontras yang sudah ada; animasi tidak mengganti warna atau state tema.
 
 ## 6. Alternatif yang dipertimbangkan
 
-1. **Kinetik terukur:** velocity dan parallax terbatas pada layer visual yang dipilih, dengan transisi overlap terpilih. Dipilih karena memenuhi permintaan tanpa mengganggu scroll native.
+1. **Kinetik terukur:** velocity dan parallax terbatas pada layer visual yang dipilih, dengan transisi overlap terpilih. Dipilih karena memenuhi permintaan tanpa menambah controller scroll atau mengganggu Lenis yang sudah ada.
 2. **Koreografi per halaman:** timing dan sasaran berbeda untuk beranda, katalog, dan studi kasus. Dipilih oleh pengguna; implementasi menggunakan komponen halaman yang sudah ada, bukan duplikasi per URL studi kasus.
 3. **Respons global:** seluruh isi bergerak mengikuti velocity. Ditolak karena membuat teks ikut bergeser dan menyamakan karakter seluruh section.
 4. **Section pin:** menahan viewport untuk adegan sinematik. Ditolak atas pilihan pengguna karena memperpanjang scroll dan berisiko pada layar kecil.
@@ -66,4 +66,4 @@ Setiap permukaan memakai timing yang berbeda sesuai struktur aktualnya. Katalog 
 - Periksa katalog saat loading dan setelah repositori tampil; skeleton tetap diam dan kartu hasil data masuk sesuai grid.
 - Periksa keyboard dan touch scroll, tema light/dark, horizontal overflow, serta console browser.
 
-Implementasi belum dimulai. Spec ini menunggu tinjauan pengguna.
+Spec disetujui pengguna; perubahan source belum dimulai.
