@@ -99,9 +99,22 @@ export default function ProjectCatalog() {
     if (reduceMotion) return
     gsap.fromTo('.cat-header', { opacity: 0, y: 16 },
       { opacity: 1, y: 0, duration: 0.6, ease: EASE_OUT })
-    gsap.fromTo('.cat-card', { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.55, ease: EASE_OUT, stagger: 0.07, delay: 0.1 })
-  }, { scope: ref, revertOnUpdate: true })
+  }, { scope: ref })
+
+  useGSAP(() => {
+    if (reduceMotion || loading || repos.length === 0) return
+
+    const mm = gsap.matchMedia()
+    mm.add({
+      desktop: '(min-width: 768px)',
+      noPreference: '(prefers-reduced-motion: no-preference)',
+    }, ({ conditions }) => {
+      if (!conditions.desktop || !conditions.noPreference) return
+      gsap.fromTo('.cat-card', { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.55, ease: EASE_OUT, stagger: 0.07 })
+    }, ref)
+    return () => mm.revert()
+  }, { scope: ref, dependencies: [reduceMotion, loading, repos], revertOnUpdate: true })
 
   return (
     <div ref={ref} className="relative min-h-[100dvh] overflow-x-clip bg-canvas text-ink">

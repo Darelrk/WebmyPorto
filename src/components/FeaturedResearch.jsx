@@ -1,6 +1,7 @@
 import { ArrowUpRight, FlaskConical, Search, Database, Cpu, CheckCircle2 } from 'lucide-react'
 import { useRef } from 'react'
-import { useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { ScrollTrigger, useGSAP, EASE_OUT, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { normalizeScrollVelocity } from '../lib/motion'
 import GlowButton from './ui/GlowButton'
 import SpotlightCard from './ui/SpotlightCard'
 import ResearchChart from './ResearchChart'
@@ -97,7 +98,31 @@ export default function FeaturedResearch({ data }) {
   const chartRef = useRef(null)
 
   useGSAP(() => {
-    if (reduceMotion) return
+    const mm = gsap.matchMedia()
+    mm.add(
+      {
+        desktop: '(min-width: 768px)',
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      ({ conditions }) => {
+        if (!conditions.desktop || conditions.reduceMotion) return
+        const wrapper = ref.current.parentElement
+        gsap.set(wrapper, { y: 12 })
+        const yTo = gsap.quickTo(wrapper, 'y', { duration: 0.24, ease: 'power2.out' })
+        const settle = gsap.delayedCall(0.14, () => yTo(12)).pause()
+
+        ScrollTrigger.create({
+          trigger: ref.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          onUpdate: (self) => {
+            yTo(12 + normalizeScrollVelocity(self.getVelocity()) * 12)
+            settle.restart(true)
+          },
+        })
+      },
+    )
+    if (reduceMotion) return () => mm.revert()
     gsap.fromTo(ref.current,
       { opacity: 0, y: 24, scale: 0.97 },
       { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: EASE_OUT,
@@ -120,82 +145,85 @@ export default function FeaturedResearch({ data }) {
       { scaleX: 1, duration: 1.1, ease: EASE_OUT,
         scrollTrigger: { trigger: '.pipe-line', start: 'top 88%', once: true },
         transformOrigin: 'left' })
+    return () => mm.revert()
   }, { scope: ref, revertOnUpdate: true })
 
   return (
-    <section id="research" className="border-b border-line/80">
-      <div className="container-shell py-12 sm:py-32">
-        <div ref={ref} className="overflow-hidden rounded-[28px] bg-ink p-7 text-canvas sm:p-10 lg:p-14">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            <div>
-              <div className="flex items-center gap-3 text-sm text-canvas/65">
-                <FlaskConical size={18} className="text-coral" strokeWidth={1.5} />
-                {data.eyebrow}
-              </div>
-              <h2 className="mt-8 max-w-xl text-[clamp(2.8rem,5.4vw,5rem)] font-bold leading-[0.95] tracking-[-0.075em]">{data.title}</h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-canvas/70">{data.problem}</p>
-              <div className="mt-9 grid gap-6 border-t border-canvas/15 pt-6 sm:grid-cols-2">
-                <SpotlightCard
-                  as="div"
-                  spotlightColor="rgba(232, 93, 74, 0.22)"
-                  className="res-badge rounded-lg border border-canvas/10 bg-canvas/5 p-4 transition-all duration-300 hover:border-canvas/25"
-                >
-                  <p className="text-xs font-bold text-coral">Method</p>
-                  <p className="mt-2 text-sm leading-6 text-canvas/70">{data.solution}</p>
-                </SpotlightCard>
-                <SpotlightCard
-                  as="div"
-                  spotlightColor="rgba(232, 93, 74, 0.22)"
-                  className="res-badge rounded-lg border border-canvas/10 bg-canvas/5 p-4 transition-all duration-300 hover:border-canvas/25"
-                >
-                  <p className="text-xs font-bold text-coral">Evidence</p>
-                  <p className="mt-2 text-sm leading-6 text-canvas/70">{data.results}</p>
-                </SpotlightCard>
-              </div>
-              <GlowButton href={data.link} target="_blank" rel="noreferrer"
-                className="mt-9 inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-canvas hover:text-ink active:translate-y-0">
-                View study <ArrowUpRight size={16} strokeWidth={1.8} />
-              </GlowButton>
+    <section id="research" className="relative z-20 border-b border-line/80">
+      <div className="container-shell py-12 sm:py-32 md:pb-0">
+        <div className="research-overlap-layer relative">
+          <div ref={ref} className="overflow-hidden rounded-[28px] bg-ink p-7 text-canvas sm:p-10 lg:p-14">
+            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+              <div>
+                <div className="flex items-center gap-3 text-sm text-canvas/65">
+                  <FlaskConical size={18} className="text-coral" strokeWidth={1.5} />
+                  {data.eyebrow}
+                </div>
+                <h2 className="mt-8 max-w-xl text-[clamp(2.8rem,5.4vw,5rem)] font-bold leading-[0.95] tracking-[-0.075em]">{data.title}</h2>
+                <p className="mt-6 max-w-xl text-base leading-7 text-canvas/70">{data.problem}</p>
+                <div className="mt-9 grid gap-6 border-t border-canvas/15 pt-6 sm:grid-cols-2">
+                  <SpotlightCard
+                    as="div"
+                    spotlightColor="rgba(232, 93, 74, 0.22)"
+                    className="res-badge rounded-lg border border-canvas/10 bg-canvas/5 p-4 transition-all duration-300 hover:border-canvas/25"
+                  >
+                    <p className="text-xs font-bold text-coral">Method</p>
+                    <p className="mt-2 text-sm leading-6 text-canvas/70">{data.solution}</p>
+                  </SpotlightCard>
+                  <SpotlightCard
+                    as="div"
+                    spotlightColor="rgba(232, 93, 74, 0.22)"
+                    className="res-badge rounded-lg border border-canvas/10 bg-canvas/5 p-4 transition-all duration-300 hover:border-canvas/25"
+                  >
+                    <p className="text-xs font-bold text-coral">Evidence</p>
+                    <p className="mt-2 text-sm leading-6 text-canvas/70">{data.results}</p>
+                  </SpotlightCard>
+                </div>
+                <GlowButton href={data.link} target="_blank" rel="noreferrer"
+                  className="mt-9 inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-canvas transition hover:-translate-y-0.5 hover:bg-canvas hover:text-ink active:translate-y-0">
+                  View study <ArrowUpRight size={16} strokeWidth={1.8} />
+                </GlowButton>
 
-              {/* Process timeline */}
-              <div className="pipe-line mt-10 border-t border-canvas/15 pt-6">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-canvas/50">Pipeline</p>
-                <div className="relative mt-4">
-                  <div className="pipe-bar absolute left-[15px] top-2 bottom-2 w-px bg-canvas/20" />
-                  <ol className="space-y-4">
-                    {PIPELINE_STEPS.map((s, i) => {
-                      const Icon = s.icon
-                      return (
-                        <li key={s.label} className="pipe-step relative flex items-start gap-3 pl-0">
-                          <div className="relative z-10 flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-canvas/25 bg-ink text-coral">
-                            <Icon size={13} strokeWidth={2} />
-                          </div>
-                          <div className="min-w-0">
-                            <p className="text-xs font-semibold text-canvas">
-                              <span className="mr-1.5 font-mono text-coral/80">0{i + 1}</span>{s.label}
-                            </p>
-                            <p className="mt-0.5 text-[11px] leading-4 text-canvas/55">{s.desc}</p>
-                          </div>
-                        </li>
-                      )
-                    })}
-                  </ol>
+                {/* Process timeline */}
+                <div className="pipe-line mt-10 border-t border-canvas/15 pt-6">
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-canvas/50">Pipeline</p>
+                  <div className="relative mt-4">
+                    <div className="pipe-bar absolute left-[15px] top-2 bottom-2 w-px bg-canvas/20" />
+                    <ol className="space-y-4">
+                      {PIPELINE_STEPS.map((s, i) => {
+                        const Icon = s.icon
+                        return (
+                          <li key={s.label} className="pipe-step relative flex items-start gap-3 pl-0">
+                            <div className="relative z-10 flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-canvas/25 bg-ink text-coral">
+                              <Icon size={13} strokeWidth={2} />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-xs font-semibold text-canvas">
+                                <span className="mr-1.5 font-mono text-coral/80">0{i + 1}</span>{s.label}
+                              </p>
+                              <p className="mt-0.5 text-[11px] leading-4 text-canvas/55">{s.desc}</p>
+                            </div>
+                          </li>
+                        )
+                      })}
+                    </ol>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="self-end rounded-[20px] border border-canvas/15 bg-canvas/[0.04] p-5 sm:p-7">
-              <div className="flex items-end justify-between gap-4">
-                <div>
-                  <p className="font-mono text-[10px] text-canvas/50">{data.chartTitle}</p>
-                  <p className="mt-2 text-2xl font-bold tracking-[-0.05em]">Accuracy</p>
+              <div className="self-end rounded-[20px] border border-canvas/15 bg-canvas/[0.04] p-5 sm:p-7">
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-[10px] text-canvas/50">{data.chartTitle}</p>
+                    <p className="mt-2 text-2xl font-bold tracking-[-0.05em]">Accuracy</p>
+                  </div>
+                  <p className="font-mono text-xs text-coral">{data.chartData?.length ?? 0} benchmarks</p>
                 </div>
-                <p className="font-mono text-xs text-coral">{data.chartData?.length ?? 0} benchmarks</p>
+                <div ref={chartRef} className="mt-8">
+                  <ResearchChart data={data.chartData} title={data.chartTitle} />
+                </div>
+                {/* Before/after compare slider */}
+                <CompareSlider data={data} />
               </div>
-              <div ref={chartRef} className="mt-8">
-                <ResearchChart data={data.chartData} title={data.chartTitle} />
-              </div>
-              {/* Before/after compare slider */}
-              <CompareSlider data={data} />
             </div>
           </div>
         </div>

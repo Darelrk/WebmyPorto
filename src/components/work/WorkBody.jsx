@@ -19,7 +19,7 @@ function FanChart({ d }) {
   const band = s.map((r, i) => `${x(i)},${y(r.p90)}`).join(' ')
     + ' ' + [...s].map((r, i) => `${x(s.length - 1 - i)},${y(s[s.length - 1 - i].p10)}`).join(' ')
   return (
-    <figure aria-label="Fan chart of credit gap forecasts">
+    <figure className="wb-parallax-media" aria-label="Fan chart of credit gap forecasts">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img">
         {[0.25, 0.5, 0.75].map((f) => (
           <line key={f} x1={PAD.l} x2={W - PAD.r} y1={PAD.t + ih * f} y2={PAD.t + ih * f} className="stroke-line" strokeWidth="0.5" />
@@ -49,7 +49,7 @@ function BarCompare({ d }) {
   const max = Math.max(...t.map((r) => r.accuracy))
   const base = t.find((r) => r.model === 'Original')?.accuracy ?? 0
   return (
-    <figure aria-label="Accuracy comparison bar chart">
+    <figure className="wb-parallax-media" aria-label="Accuracy comparison bar chart">
       <div className="flex h-[240px] items-end gap-3 border-b border-line pb-0 sm:gap-5">
         {t.map((r) => (
           <div key={r.model} className="flex h-full flex-1 flex-col justify-end gap-2">
@@ -214,11 +214,27 @@ export default function WorkBody({ blocks, dkey }) {
   const ref = useRef(null)
 
   useGSAP(() => {
-    if (reduceMotion) return
+    const mm = gsap.matchMedia()
+    mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+      gsap.utils.toArray('.wb-parallax-media', ref.current).forEach((media, index) => {
+        gsap.to(media, {
+          yPercent: index % 2 === 0 ? -2 : 2,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: media,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.35,
+          },
+        })
+      })
+    })
+    if (reduceMotion) return () => mm.revert()
     gsap.fromTo('.wb-reveal', { opacity: 0, y: 14 }, {
       opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT, stagger: 0.07,
       scrollTrigger: { trigger: ref.current, start: 'top 84%', once: true },
     })
+    return () => mm.revert()
   }, { scope: ref, revertOnUpdate: true })
 
   const d = data[dkey]

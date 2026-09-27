@@ -14,11 +14,27 @@ export default function WorkShell({ meta }) {
   const ref = useRef(null)
 
   useGSAP(() => {
-    if (reduceMotion) return
+    const mm = gsap.matchMedia()
+    mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+      gsap.utils.toArray('.ws-parallax-media', ref.current).forEach((media, index) => {
+        gsap.to(media, {
+          yPercent: index % 2 === 0 ? -2 : 2,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: media,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.35,
+          },
+        })
+      })
+    })
+    if (reduceMotion) return () => mm.revert()
     gsap.fromTo('.ws-reveal', { opacity: 0, y: 16 }, {
       opacity: 1, y: 0, duration: 0.55, ease: EASE_OUT, stagger: 0.07,
       scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
     })
+    return () => mm.revert()
   }, { scope: ref, revertOnUpdate: true })
 
   return (
@@ -79,7 +95,7 @@ export default function WorkShell({ meta }) {
               <div className="space-y-6">
                 {meta.images.map((image) => (
                   <figure key={image.src} className="overflow-hidden rounded-2xl border border-line/80 bg-white/40 dark:bg-white/[0.03]">
-                    <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" className="h-auto w-full" />
+                    <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" className="ws-parallax-media h-auto w-full" />
                     <figcaption className="border-t border-line/80 px-5 py-3 text-xs leading-5 text-muted">{image.caption}</figcaption>
                   </figure>
                 ))}

@@ -15,3 +15,9 @@ export function prefersReducedMotion() {
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   )
 }
+
+const MAX_SCROLL_VELOCITY = 1800
+
+export function normalizeScrollVelocity(velocity) {
+  return Math.max(-1, Math.min(1, velocity / MAX_SCROLL_VELOCITY))
+}

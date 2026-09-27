@@ -1,6 +1,7 @@
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { useRef } from 'react'
-import { useGSAP, EASE_OUT, EASE_IN_OUT, EASE_BOUNCE, EASE_ELASTIC, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { ScrollTrigger, useGSAP, EASE_OUT, EASE_IN_OUT, EASE_BOUNCE, EASE_ELASTIC, useReducedMotionSafe, gsap } from '../lib/gsap'
+import { normalizeScrollVelocity } from '../lib/motion'
 import TextReveal from './ui/TextReveal'
 
 export default function Hero({ data }) {
@@ -14,9 +15,45 @@ export default function Hero({ data }) {
   }
 
   useGSAP(() => {
+    const mm = gsap.matchMedia()
+    mm.add(
+      {
+        desktop: '(min-width: 768px)',
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      ({ conditions }) => {
+        if (!conditions.desktop || conditions.reduceMotion) return
+
+        // Parallax scrub
+        gsap.to('.hero-image-wrap', {
+          yPercent: -6, ease: 'none',
+          scrollTrigger: { trigger: '.hero-image-wrap', start: 'top bottom', end: 'bottom top', scrub: true }
+        })
+        gsap.to('.hero-card-coral', {
+          y: -8, ease: 'none',
+          scrollTrigger: { trigger: '.hero-card-coral', start: 'top bottom', end: 'bottom top', scrub: true }
+        })
+
+        const layer = ref.current?.querySelector('.hero-image-motion')
+        if (!layer) return
+        const yTo = gsap.quickTo(layer, 'y', { duration: 0.24, ease: 'power2.out' })
+        const settle = gsap.delayedCall(0.14, () => yTo(0)).pause()
+        ScrollTrigger.create({
+          trigger: ref.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          onUpdate: (self) => {
+            yTo(-normalizeScrollVelocity(self.getVelocity()) * 16)
+            settle.restart(true)
+          },
+        })
+      },
+      ref,
+    )
+
     if (reduce) {
       gsap.set('.hero-stat', { opacity: 1 })
-      return
+      return () => mm.revert()
     }
     gsap.timeline()
       .fromTo('.hero-eyebrow', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT })
@@ -26,16 +63,6 @@ export default function Hero({ data }) {
       .fromTo('.hero-image-wrap', { opacity: 0, scale: 0.94, y: 24 }, { opacity: 1, scale: 1, y: 0, duration: 0.95, ease: EASE_IN_OUT }, '-=0.55')
       .fromTo('.hero-card-coral', { opacity: 0, y: 10, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: EASE_BOUNCE }, '-=0.25')
       .fromTo('.hero-card-open', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_BOUNCE }, '-=0.3')
-
-    // Parallax scrub
-    gsap.to('.hero-image-wrap', {
-      yPercent: -6, ease: 'none',
-      scrollTrigger: { trigger: '.hero-image-wrap', start: 'top bottom', end: 'bottom top', scrub: true }
-    })
-    gsap.to('.hero-card-coral', {
-      y: -8, ease: 'none',
-      scrollTrigger: { trigger: '.hero-card-coral', start: 'top bottom', end: 'bottom top', scrub: true }
-    })
 
     // Magnetic CTA hover (elastic physics)
     gsap.utils.toArray('.hero-cta a').forEach((a) => {
@@ -89,6 +116,7 @@ export default function Hero({ data }) {
 
     // Stat reveal (textual values — scroll-triggered stagger)
     gsap.fromTo('.hero-stat', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE_OUT, stagger: 0.12, scrollTrigger: { trigger: '.hero-stats', start: 'top 90%', once: true } })
+    return () => mm.revert()
   }, { scope: ref })
 
   return (
@@ -136,19 +164,21 @@ export default function Hero({ data }) {
         </div>
 
         <div className="relative sm:min-h-[560px]">
-          <div className="hero-image-wrap relative aspect-[4/3] overflow-hidden rounded-[28px] bg-mist sm:absolute sm:inset-x-8 sm:top-12 sm:bottom-0 sm:aspect-auto sm:h-auto">
-            <img
-              src="/profile_circle.webp"
-              alt="Portrait of Darrell Rafif Kenzie"
-              className="h-full w-full object-cover object-center grayscale-[0.15] mix-blend-multiply"
-              width="500"
-              height="500"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 text-canvas">
-              <p className="max-w-[15rem] text-sm leading-5">{data.caption}</p>
-              <ArrowDownRight size={22} strokeWidth={1.5} />
+          <div className="hero-image-motion relative aspect-[4/3] sm:absolute sm:inset-x-8 sm:top-12 sm:bottom-0 sm:aspect-auto">
+            <div className="hero-image-wrap relative h-full w-full overflow-hidden rounded-[28px] bg-mist">
+              <img
+                src="/profile_circle.webp"
+                alt="Portrait of Darrell Rafif Kenzie"
+                className="h-full w-full object-cover object-center grayscale-[0.15] mix-blend-multiply"
+                width="500"
+                height="500"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 text-canvas">
+                <p className="max-w-[15rem] text-sm leading-5">{data.caption}</p>
+                <ArrowDownRight size={22} strokeWidth={1.5} />
+              </div>
             </div>
           </div>
           <div className="hero-card-coral relative mt-5 w-full rounded-2xl bg-coral p-5 text-canvas shadow-float sm:absolute sm:right-2 sm:top-0 sm:mt-0 sm:w-40">
